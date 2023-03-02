@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/website/node_modules
+/cms/node_modules
+
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/website/.next/
+/website/out/
+
+# production
+/website/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+/website/npm-debug.log*
+/website/yarn-debug.log*
+/website/yarn-error.log*
+/website/.pnpm-debug.log*
+
+# local env files
+/website/.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# Logs
+/cms/logs
+/cms/*.log
+
+# Coverage directory used by tools like istanbul
+/cms/coverage
+
+# Compiled sanity studio
+/cms/dist
+
+/website/yarn.lock
+/website/package-lock.json
+/cms/yarn.lock
+/cms/package-lock.json
