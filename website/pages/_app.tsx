@@ -1,7 +1,19 @@
-import type { AppProps } from "next/app";
+import { ReactNode } from "react";
+import dynamic from "next/dynamic";
+import { NextComponentType } from "next";
+import { AppContext, AppInitialProps, AppLayoutProps } from "next/app";
 
 import "@/styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const Page = dynamic(() => import("@/layout/page"));
+
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+  Component,
+  pageProps,
+}: AppLayoutProps) => {
+  const getLayout =
+    Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);
+  return getLayout(<Component {...{ ...pageProps }} />);
+};
+
+export default MyApp;
