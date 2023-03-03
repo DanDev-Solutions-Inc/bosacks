@@ -13,7 +13,7 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
 }: AppLayoutProps) => {
   const getLayout =
     Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);
-  return getLayout(<Component {...{ ...pageProps }} />);
+  return getLayout(<Component {...pageProps} />);
 };
 
 export default MyApp;
