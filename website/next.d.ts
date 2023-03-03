@@ -26,6 +26,7 @@ declare global {
     interface ProcessEnv {
       SANITY_PROJECT_ID: string;
       SANITY_DATASET: string;
+      CONSTANT_CONTACT_BASE_URL: string;
     }
   }
 }
