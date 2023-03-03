@@ -10,6 +10,10 @@ import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
 import { urlFor } from "@utils/image-helper";
+import { Formik, FormikHelpers, Form, Field } from "formik";
+import { SubscribeFormValues } from "@interfaces/formik/SubscribeFormValues";
+import { addContact } from "@services/api";
+import { AddContactRequest } from "@interfaces/api/AddContactRequest";
 
 const Profile = dynamic(() => import("@components/profile"));
 
@@ -20,6 +24,18 @@ const Home: NextPage<HomePageProps> = ({
 }: HomePageProps) => {
   console.log(articles);
   useMemo(() => {}, []);
+
+  const onSubmit = async (values: SubscribeFormValues) => {
+    const addContactRequest: AddContactRequest = {
+      email_addresses: [
+        {
+          email_address: values.email,
+        },
+      ],
+    };
+    const response = await addContact(addContactRequest);
+    console.log(response);
+  };
 
   return (
     <>
@@ -39,6 +55,34 @@ const Home: NextPage<HomePageProps> = ({
         )}
       </div>
       <Profile configuration={configuration} />
+      <div>
+        <div>Subscribe</div>
+        <Formik
+          initialValues={{
+            email: "",
+          }}
+          onSubmit={(
+            values: SubscribeFormValues,
+            { setSubmitting }: FormikHelpers<SubscribeFormValues>
+          ) => {
+            setTimeout(() => {
+              onSubmit(values);
+              setSubmitting(false);
+            }, 500);
+          }}
+        >
+          <Form>
+            <label htmlFor="email">Email</label>
+            <Field
+              id="email"
+              name="email"
+              placeholder="john@acme.com"
+              type="email"
+            />
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </div>
       <div>
         {articles &&
           articles.map((a) => {

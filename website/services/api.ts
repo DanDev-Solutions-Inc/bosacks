@@ -1,5 +1,6 @@
 import http from "./http";
+import { AddContactRequest } from "@interfaces/api/AddContactRequest";
 
-export const status = () => {
-  return http.get("/");
+export const addContact = (addContactRequest: AddContactRequest) => {
+  return http.post("/add-contact", addContactRequest);
 };

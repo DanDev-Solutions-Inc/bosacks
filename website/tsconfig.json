@@ -17,6 +17,7 @@
     "paths": {
       "@client": ["./client"],
       "@styles/*": ["./styles/*"],
+      "@services/*": ["./services/*"],
       "@utils/*": ["./utils/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@components/*": ["./components/*"],
