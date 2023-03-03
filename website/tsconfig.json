@@ -15,8 +15,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"],
+      "@client": ["./client"],
       "@styles/*": ["./styles/*"],
+      "@utils/*": ["./utils/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@components/*": ["./components/*"],
       "@layout/*": ["./layout/*"],

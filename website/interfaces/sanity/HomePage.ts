@@ -7,5 +7,5 @@ export interface HomePage {
   _type: string;
   _updatedAt: Date;
   title: string;
-  image: Image;
+  heroImage: Image;
 }

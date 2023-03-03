@@ -45,6 +45,12 @@ export default defineType({
       group: 'global',
     }),
     defineField({
+      name: 'bio',
+      title: 'Bio',
+      type: 'string',
+      group: 'global',
+    }),
+    defineField({
       name: 'twitter',
       title: 'Twitter',
       type: 'url',

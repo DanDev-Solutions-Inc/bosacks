@@ -1,3 +1,5 @@
+import { Image } from "./Image";
+
 export interface Configuration {
   _createdAt: Date;
   _id: string;
@@ -7,4 +9,6 @@ export interface Configuration {
   title: string;
   twitter: string;
   linkedIn: string;
+  avatarImage: Image;
+  bio: string;
 }
