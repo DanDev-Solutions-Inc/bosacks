@@ -14,5 +14,8 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+    templates: (prev) => {
+      return prev.filter((p) => !['configuration', 'homePage'].includes(p.id))
+    },
   },
 })
