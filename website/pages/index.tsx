@@ -2,10 +2,10 @@ import { GetServerSideProps, NextPage } from "next";
 import { useMemo } from "react";
 import { NextSeo } from "next-seo";
 
+import { HomePageProps } from "@interfaces/HomePageProps";
+import { Configuration } from "@interfaces/sanity/Configuration";
+import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@/client";
-import { HomePageProps } from "@/interfaces/HomePageProps";
-import { Configuration } from "@/interfaces/sanity/Configuration";
-import { HomePage } from "@/interfaces/sanity/HomePage";
 
 const Home: NextPage<HomePageProps> = ({
   page,

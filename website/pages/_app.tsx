@@ -3,9 +3,9 @@ import dynamic from "next/dynamic";
 import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppLayoutProps } from "next/app";
 
-import "@/styles/globals.css";
+import "@styles/globals.css";
 
-const Page = dynamic(() => import("@/layout/page"));
+const Page = dynamic(() => import("@layout/page"));
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   Component,
