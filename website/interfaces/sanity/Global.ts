@@ -1,6 +1,6 @@
 import { Image } from "./Image";
 
-export interface Configuration {
+export interface Global {
   _createdAt: Date;
   _id: string;
   _rev: string;

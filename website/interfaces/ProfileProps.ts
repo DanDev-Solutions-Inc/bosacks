@@ -1,5 +1,5 @@
-import { Configuration } from "./sanity/Configuration";
+import { Global } from "./sanity/Global";
 
 export interface ProfileProps {
-  configuration: Configuration;
+  configuration: Global;
 }

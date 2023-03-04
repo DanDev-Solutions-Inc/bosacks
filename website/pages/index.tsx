@@ -3,9 +3,10 @@ import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { PortableText } from "@portabletext/react";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
-import { Configuration } from "@interfaces/sanity/Configuration";
+import { Global } from "@interfaces/sanity/Global";
 import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
@@ -42,7 +43,12 @@ const Home: NextPage<HomePageProps> = ({
       <div>
         {articles &&
           articles.map((a) => {
-            return <span key={a._id}>{a.title}</span>;
+            return (
+              <div key={a._id}>
+                <span>{a.title}</span>
+                {/* <PortableText value={a.body} /> */}
+              </div>
+            );
           })}
       </div>
       <Button text={"Subscribe"} onClick={() => setIsOpen?.(!isOpen)} />
@@ -52,9 +58,7 @@ const Home: NextPage<HomePageProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const page: HomePage = await client.fetch(`*[_type == "homePage"][0]`);
-  const configuration: Configuration = await client.fetch(
-    `*[_type == "configuration"][0]`
-  );
+  const configuration: Global = await client.fetch(`*[_type == "global"][0]`);
   const articles: Article[] = await client.fetch(`*[_type == "article"]`);
 
   return {

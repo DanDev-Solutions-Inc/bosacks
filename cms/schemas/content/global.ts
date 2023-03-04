@@ -2,13 +2,13 @@ import {TbSettings} from 'react-icons/tb'
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'configuration',
-  title: 'Configuration',
+  name: 'global',
+  title: 'Global',
   type: 'document',
   groups: [
     {
-      name: 'global',
-      title: 'Global',
+      name: 'avatar',
+      title: 'Avatar',
       icon: TbSettings,
       default: true,
     },
@@ -25,7 +25,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       hidden: true,
-      group: 'global',
+      group: 'avatar',
     }),
     defineField({
       name: 'avatarImage',
@@ -42,13 +42,13 @@ export default defineType({
         },
       ],
       validation: (Rule) => Rule.required(),
-      group: 'global',
+      group: 'avatar',
     }),
     defineField({
       name: 'bio',
       title: 'Bio',
       type: 'string',
-      group: 'global',
+      group: 'avatar',
     }),
     defineField({
       name: 'twitter',

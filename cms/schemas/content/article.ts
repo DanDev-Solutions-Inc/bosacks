@@ -11,6 +11,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'publishedDate',
+      title: 'Published Date',
+      type: 'date',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
