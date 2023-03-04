@@ -63,7 +63,7 @@ const Home: NextPage<HomePageProps> = ({
     const start = itemsPerPage * pageCount;
     const end = start + itemsPerPage;
     const newArticleItems: Article[] = await client.fetch(
-      getMoreArticlesQuery(order, start, end)
+      getArticlesQuery(order, start, end)
     );
 
     setPageCount(pageCount + 1);
