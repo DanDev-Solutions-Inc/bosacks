@@ -14,6 +14,7 @@ import { Formik, FormikHelpers, Form, Field } from "formik";
 import { SubscribeFormValues } from "@interfaces/formik/SubscribeFormValues";
 import { addContact } from "@services/api";
 import { AddContactRequest } from "@interfaces/api/AddContactRequest";
+import { SubscribeFormSchema } from "@schemas/SubscribeFormSchema";
 
 const Profile = dynamic(() => import("@components/profile"));
 
@@ -61,6 +62,7 @@ const Home: NextPage<HomePageProps> = ({
           initialValues={{
             email: "",
           }}
+          validationSchema={SubscribeFormSchema}
           onSubmit={(
             values: SubscribeFormValues,
             { setSubmitting }: FormikHelpers<SubscribeFormValues>

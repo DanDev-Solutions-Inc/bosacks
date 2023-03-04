@@ -16,6 +16,7 @@
     "incremental": true,
     "paths": {
       "@client": ["./client"],
+      "@schemas/*": ["./schemas/*"],
       "@styles/*": ["./styles/*"],
       "@services/*": ["./services/*"],
       "@utils/*": ["./utils/*"],
