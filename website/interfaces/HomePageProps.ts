@@ -6,4 +6,5 @@ export interface HomePageProps {
   page: HomePage;
   configuration: Global;
   articles: Article[];
+  totalArticles: number;
 }

@@ -1,4 +1,5 @@
 import { Block } from "./Block";
+import { Image } from "./Image";
 import { Slug } from "./Slug";
 
 export interface Article {
@@ -13,4 +14,5 @@ export interface Article {
   body: Block[];
   category: string;
   publishedDate: string;
+  image: Image;
 }

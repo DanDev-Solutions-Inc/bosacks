@@ -20,6 +20,22 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt',
+          type: 'string',
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'reference',
@@ -59,12 +75,14 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
+      image: 'image',
       category: 'category.title',
     },
     prepare(selection) {
-      const {title, category} = selection
+      const {title, image, category} = selection
       return {
         title,
+        media: image,
         subtitle: `${category}`,
       }
     },
