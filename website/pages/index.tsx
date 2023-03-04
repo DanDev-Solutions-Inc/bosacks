@@ -54,6 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (_context) => {
       title,
       slug,
       publishedDate,
+      excerpt,
       body,
       "category": category->title,
     }

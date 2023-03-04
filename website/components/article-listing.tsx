@@ -10,6 +10,7 @@ const ArticleListing = ({ articles }: ArticleListingProps) => {
               <div>{a.title}</div>
               <div>{a.category}</div>
               <div>{a.publishedDate}</div>
+              <div>{a.excerpt}</div>
             </div>
           );
         })}

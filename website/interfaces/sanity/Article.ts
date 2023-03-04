@@ -9,6 +9,7 @@ export interface Article {
   _updatedAt: Date;
   title: string;
   slug: Slug;
+  excerpt: string;
   body: Block[];
   category: string;
   publishedDate: string;
