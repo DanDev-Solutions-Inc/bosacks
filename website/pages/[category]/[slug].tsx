@@ -17,7 +17,8 @@ const Article = ({ article }: any) => {
           height={500}
         />
       )}
-      <div>{article.category}</div>
+      <div>Category: {article.category}</div>
+      <div>Author: {article.author}</div>
       <div>{article.publishedDate}</div>
       {article.body && <PortableText value={article.body} />}
     </div>

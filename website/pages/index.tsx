@@ -113,7 +113,7 @@ const Home: NextPage<HomePageProps> = ({
       <Profile configuration={configuration} />
       <div>
         <div>
-          <label>Search</label>
+          <label className="font-bold">Search:</label>
           <input
             onKeyDown={(e) => {
               if (e.key == "Enter" && e.shiftKey == false) {

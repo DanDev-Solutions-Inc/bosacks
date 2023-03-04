@@ -13,6 +13,7 @@ export const getArticlesQuery = (
   excerpt,
   image,
   "category": category->title,
+  "author": author->title,
   "categorySlug": category->slug,
 } | order(${order})[${start}...${end}]
 `;
@@ -24,7 +25,8 @@ export const getArticleQuery = (slug: string) => `
     publishedDate,
     body,
     image,
-    "category": category->title,
+    "category": category->title,  
+    "author": author->title,
     "categorySlug": category->slug,}
 `;
 

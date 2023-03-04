@@ -16,4 +16,5 @@ export interface Article {
   publishedDate: string;
   image: Image;
   categorySlug: Slug;
+  author: string;
 }

@@ -22,7 +22,8 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         />
       )}
       <div>{article.title}</div>
-      <div>{article.category}</div>
+      <div>Category: {article.category}</div>
+      <div>Author: {article.author}</div>
       <div>{article.publishedDate}</div>
       <div>{article.excerpt}</div>
     </div>

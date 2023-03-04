@@ -45,6 +45,15 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'author'}],
+      options: {
+        disableNew: true,
+      },
+    }),
+    defineField({
       name: 'publishedDate',
       title: 'Published Date',
       type: 'date',
