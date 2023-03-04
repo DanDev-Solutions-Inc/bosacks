@@ -13,6 +13,11 @@ import { Article } from "@interfaces/sanity/Article";
 import { urlFor } from "@utils/image-helper";
 import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import ArticleItem from "@components/article-item";
+import {
+  getArticlesQuery,
+  getCountQuery,
+  getItemQuery,
+} from "@utils/groq-helper";
 
 const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
@@ -57,17 +62,9 @@ const Home: NextPage<HomePageProps> = ({
   const onFetchMoreData = async () => {
     const start = itemsPerPage * pageCount;
     const end = start + itemsPerPage;
-    const newArticleItems: Article[] = await client.fetch(`
-      *[_type == "article"]{
-        title,
-        slug,
-        publishedDate,
-        excerpt,
-        body,
-        image,
-        "category": category->title,
-      } | order(${order}) [${start}...${end}]
-    `);
+    const newArticleItems: Article[] = await client.fetch(
+      getMoreArticlesQuery(order, start, end)
+    );
 
     setPageCount(pageCount + 1);
     const updatedArticleItems = filteredArticles.concat(newArticleItems);
@@ -116,23 +113,17 @@ const Home: NextPage<HomePageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
-  const page: HomePage = await client.fetch(`*[_type == "homePage"][0]`);
-  const configuration: Global = await client.fetch(`*[_type == "global"][0]`);
+  const page: HomePage = await client.fetch(getItemQuery("homePage"));
+  const configuration: Global = await client.fetch(getItemQuery("global"));
 
   const itemsPerPage = 2;
-  const totalArticles = await client.fetch(`count(*[_type == "article"])`);
+  const order = "publishedDate desc";
 
-  const articles: Article[] = await client.fetch(`
-    *[_type == "article"]{
-      title,
-      slug,
-      publishedDate,
-      excerpt,
-      body,
-      image,
-      "category": category->title,
-    } | order(publishedDate desc)[0...${itemsPerPage}]
-  `);
+  const totalArticles = await client.fetch(getCountQuery("article"));
+
+  const articles: Article[] = await client.fetch(
+    getArticlesQuery(order, 0, itemsPerPage)
+  );
 
   return {
     props: { page, configuration, articles, totalArticles },
