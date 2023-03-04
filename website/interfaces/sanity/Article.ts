@@ -1,4 +1,5 @@
 import { Block } from "./Block";
+import { Slug } from "./Slug";
 
 export interface Article {
   _createdAt: Date;
@@ -7,5 +8,8 @@ export interface Article {
   _type: string;
   _updatedAt: Date;
   title: string;
+  slug: Slug;
   body: Block[];
+  category: string;
+  publishedDate: string;
 }
