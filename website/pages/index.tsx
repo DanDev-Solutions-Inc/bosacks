@@ -40,27 +40,27 @@ const Home: NextPage<HomePageProps> = ({
   const [search, setSearch] = useState<string>("");
 
   useMemo(() => {
-    setDataLength(filteredArticles.length);
+    setDataLength(
+      filteredArticles.length < itemsPerPage
+        ? itemsPerPage
+        : filteredArticles.length
+    );
   }, [filteredArticles]);
 
-  useEffect(() => {
-    if (getFilteredArticles().length < itemsPerPage) {
-      setDataLength(itemsPerPage);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useMemo(() => {
+    const init = async () => {
+      const articles: Article[] = await client.fetch(
+        getArticlesQuery(listingOrder, 0, itemsPerPage)
+      );
+      setFilteredArticles(articles);
+      setPageCount(1);
+      setHasMore(articles.length !== totalArticles);
+    };
+    init();
+  }, [listingOrder]);
 
   const getFilteredArticles = () => {
     return filteredArticles;
-    // console.log("getFilteredArticles");
-    // console.log(
-    //   sort(filteredArticles, (p) => new Date(p?.publishedDate), [
-    //     listingOrder === publishedDateDesc ? "desc" : "asc",
-    //   ])
-    // );
-    // return sort(filteredArticles, (p) => new Date(p?.publishedDate), [
-    //   listingOrder === publishedDateDesc ? "desc" : "asc",
-    // ]);
   };
 
   const onFetchMoreData = async () => {
