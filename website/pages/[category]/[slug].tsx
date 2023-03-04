@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, toPlainText } from "@portabletext/react";
 
 import { client } from "@client";
 import { getArticleQuery } from "@utils/groq-helper";
 import { urlFor } from "@utils/image-helper";
+import { components } from "@components/components";
 
 const Article = ({ article }: any) => {
   return (
@@ -20,7 +21,12 @@ const Article = ({ article }: any) => {
       <div>Category: {article.category}</div>
       <div>Author: {article.author}</div>
       <div>{article.publishedDate}</div>
-      {article.body && <PortableText value={article.body} />}
+      {article.body && (
+        <PortableText value={article.body} components={components} />
+      )}
+      {/* <div
+        dangerouslySetInnerHTML={{ __html: toPlainText(article.body) }}
+      ></div> */}
     </div>
   );
 };

@@ -8,7 +8,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
   return (
     <div
-      className="h-[1000px] cursor-pointer"
+      className="cursor-pointer p-5 mt-5"
       onClick={() =>
         router.push(`/${article.categorySlug.current}/${article.slug.current}`)
       }
@@ -21,7 +21,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           height={250}
         />
       )}
-      <div>{article.title}</div>
+      <div className="font-bold">{article.title}</div>
       <div>Category: {article.category}</div>
       <div>Author: {article.author}</div>
       <div>{article.publishedDate}</div>

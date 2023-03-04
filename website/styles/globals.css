@@ -5,3 +5,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+a {
+    text-decoration: underline;
+    font-weight: bold;
+}
