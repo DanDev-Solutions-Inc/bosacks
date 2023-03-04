@@ -15,4 +15,5 @@ export interface Article {
   category: string;
   publishedDate: string;
   image: Image;
+  categorySlug: Slug;
 }

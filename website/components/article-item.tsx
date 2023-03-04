@@ -1,11 +1,18 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import { ArticleItemProps } from "@interfaces/ArticleItemProps";
 import { urlFor } from "@utils/image-helper";
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
+  const router = useRouter();
   return (
-    <div className="h-[1000px]">
+    <div
+      className="h-[1000px] cursor-pointer"
+      onClick={() =>
+        router.push(`/${article.categorySlug.current}/${article.slug.current}`)
+      }
+    >
       {article.image && (
         <Image
           src={urlFor(article.image).url()}

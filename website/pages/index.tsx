@@ -157,7 +157,6 @@ export const getServerSideProps: GetServerSideProps = async (_context) => {
   const configuration: Global = await client.fetch(getItemQuery("global"));
 
   const totalArticles = await client.fetch(getCountQuery("article"));
-
   const articles: Article[] = await client.fetch(
     getArticlesQuery(publishedDateDesc, 0, itemsPerPage)
   );
