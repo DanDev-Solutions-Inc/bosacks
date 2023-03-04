@@ -4,6 +4,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { orderBy as sort } from "lodash";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
 import { Global } from "@interfaces/sanity/Global";
@@ -18,7 +19,7 @@ import {
   getCountQuery,
   getItemQuery,
 } from "@utils/groq-helper";
-import { order, itemsPerPage } from "@utils/constants";
+import { publishedDateDesc, itemsPerPage } from "@utils/constants";
 
 const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
@@ -35,42 +36,62 @@ const Home: NextPage<HomePageProps> = ({
   const [pageCount, setPageCount] = useState(1);
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles);
   const [dataLength, setDataLength] = useState(articles.length);
-  const [listingOrder, setListingOrder] = useState(order);
-
-  //filters
+  const [listingOrder, setListingOrder] = useState(publishedDateDesc);
   const [search, setSearch] = useState<string>("");
-
-  const itemsPerPage = 2;
 
   useMemo(() => {
     setDataLength(filteredArticles.length);
   }, [filteredArticles]);
 
   useEffect(() => {
-    if (getFilteredArticles.length < itemsPerPage) {
+    if (getFilteredArticles().length < itemsPerPage) {
       setDataLength(itemsPerPage);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getFilteredArticles = () => {
-    if (!search) {
-      return filteredArticles;
-    }
-    return filteredArticles.filter((a) => a.title.includes(search));
+    return filteredArticles;
+    // console.log("getFilteredArticles");
+    // console.log(
+    //   sort(filteredArticles, (p) => new Date(p?.publishedDate), [
+    //     listingOrder === publishedDateDesc ? "desc" : "asc",
+    //   ])
+    // );
+    // return sort(filteredArticles, (p) => new Date(p?.publishedDate), [
+    //   listingOrder === publishedDateDesc ? "desc" : "asc",
+    // ]);
   };
 
   const onFetchMoreData = async () => {
     const start = itemsPerPage * pageCount;
     const end = start + itemsPerPage;
     const newArticleItems: Article[] = await client.fetch(
-      getArticlesQuery(listingOrder, start, end)
+      getArticlesQuery(listingOrder, start, end, search)
     );
 
     setPageCount(pageCount + 1);
     const updatedArticleItems = filteredArticles.concat(newArticleItems);
     setFilteredArticles(updatedArticleItems);
     setHasMore(updatedArticleItems.length !== totalArticles);
+  };
+
+  const onSearch = async () => {
+    if (!search) {
+      setFilteredArticles(filteredArticles);
+      setPageCount(1);
+      setHasMore(filteredArticles.length !== totalArticles);
+    }
+
+    const articles: Article[] = await client.fetch(
+      getArticlesQuery(listingOrder, 0, itemsPerPage, search)
+    );
+
+    setFilteredArticles(articles);
+    setPageCount(1);
+    setHasMore(
+      articles.length !== (await client.fetch(getCountQuery("article", search)))
+    );
   };
 
   return (
@@ -91,8 +112,25 @@ const Home: NextPage<HomePageProps> = ({
       </div>
       <Profile configuration={configuration} />
       <div>
-        <label>Search</label>
-        <input onChange={(e) => setSearch(e.target.value)} value={search} />
+        <div>
+          <label>Search</label>
+          <input
+            onKeyDown={(e) => {
+              if (e.key == "Enter" && e.shiftKey == false) {
+                onSearch();
+              }
+            }}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </div>
+        <div>
+          <p className="font-bold">Sort By:</p>
+          <select onChange={(e) => setListingOrder(e.target.value)}>
+            <option value="publishedDate desc">{`Published Date (Desc)`}</option>
+            <option value="publishedDate asc">{`Published Date (Asc)`}</option>
+          </select>
+        </div>
       </div>
       <InfiniteScroll
         dataLength={dataLength}
@@ -121,7 +159,7 @@ export const getServerSideProps: GetServerSideProps = async (_context) => {
   const totalArticles = await client.fetch(getCountQuery("article"));
 
   const articles: Article[] = await client.fetch(
-    getArticlesQuery(order, 0, itemsPerPage)
+    getArticlesQuery(publishedDateDesc, 0, itemsPerPage)
   );
 
   return {

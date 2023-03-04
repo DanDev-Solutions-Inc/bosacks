@@ -1,2 +1,3 @@
 export const itemsPerPage = 2;
-export const order = "publishedDate desc";
+export const publishedDateDesc = "publishedDate desc";
+export const publishedDateAsc = "publishedDate asc";
