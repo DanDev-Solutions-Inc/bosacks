@@ -3,6 +3,8 @@ import dynamic from "next/dynamic";
 import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppLayoutProps } from "next/app";
 
+import SubscribeModalContextProvider from "@context/subscribe-modal-context";
+
 import "@styles/globals.css";
 
 const Page = dynamic(() => import("@layout/page"));
@@ -13,7 +15,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
 }: AppLayoutProps) => {
   const getLayout =
     Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <SubscribeModalContextProvider>
+      {getLayout(<Component {...pageProps} />)}
+    </SubscribeModalContextProvider>
+  );
 };
 
 export default MyApp;

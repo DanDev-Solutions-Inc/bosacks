@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
-import { useMemo } from "react";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 
@@ -10,11 +9,9 @@ import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
 import { urlFor } from "@utils/image-helper";
-import { Formik, FormikHelpers, Form, Field } from "formik";
-import { SubscribeFormValues } from "@interfaces/formik/SubscribeFormValues";
-import { addContact } from "@services/api";
-import { AddContactRequest } from "@interfaces/api/AddContactRequest";
-import { SubscribeFormSchema } from "@schemas/SubscribeFormSchema";
+import Button from "@components/button";
+import { SubscribeModalContext } from "@context/subscribe-modal-context";
+import { useContext } from "react";
 
 const Profile = dynamic(() => import("@components/profile"));
 
@@ -23,20 +20,7 @@ const Home: NextPage<HomePageProps> = ({
   configuration,
   articles,
 }: HomePageProps) => {
-  console.log(articles);
-  useMemo(() => {}, []);
-
-  const onSubmit = async (values: SubscribeFormValues) => {
-    const addContactRequest: AddContactRequest = {
-      email_addresses: [
-        {
-          email_address: values.email,
-        },
-      ],
-    };
-    const response = await addContact(addContactRequest);
-    console.log(response);
-  };
+  const { isOpen, setIsOpen } = useContext(SubscribeModalContext);
 
   return (
     <>
@@ -44,7 +28,6 @@ const Home: NextPage<HomePageProps> = ({
         title={page.title}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-      <h1 className="text-3xl font-bold underline">Bosacks.com</h1>
       <div>
         {page.heroImage && (
           <Image
@@ -57,40 +40,12 @@ const Home: NextPage<HomePageProps> = ({
       </div>
       <Profile configuration={configuration} />
       <div>
-        <div>Subscribe</div>
-        <Formik
-          initialValues={{
-            email: "",
-          }}
-          validationSchema={SubscribeFormSchema}
-          onSubmit={(
-            values: SubscribeFormValues,
-            { setSubmitting }: FormikHelpers<SubscribeFormValues>
-          ) => {
-            setTimeout(() => {
-              onSubmit(values);
-              setSubmitting(false);
-            }, 500);
-          }}
-        >
-          <Form>
-            <label htmlFor="email">Email</label>
-            <Field
-              id="email"
-              name="email"
-              placeholder="john@acme.com"
-              type="email"
-            />
-            <button type="submit">Submit</button>
-          </Form>
-        </Formik>
-      </div>
-      <div>
         {articles &&
           articles.map((a) => {
             return <span key={a._id}>{a.title}</span>;
           })}
       </div>
+      <Button text={"Subscribe"} onClick={() => setIsOpen?.(!isOpen)} />
     </>
   );
 };
