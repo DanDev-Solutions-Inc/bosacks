@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -9,11 +10,10 @@ import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
 import { urlFor } from "@utils/image-helper";
-import Button from "@components/button";
 import { SubscribeModalContext } from "@context/subscribe-modal-context";
-import { useContext } from "react";
 
 const Profile = dynamic(() => import("@components/profile"));
+const Button = dynamic(() => import("@components/button"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
