@@ -18,6 +18,7 @@ import {
   getCountQuery,
   getItemQuery,
 } from "@utils/groq-helper";
+import { order, itemsPerPage } from "@utils/constants";
 
 const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
@@ -34,7 +35,7 @@ const Home: NextPage<HomePageProps> = ({
   const [pageCount, setPageCount] = useState(1);
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles);
   const [dataLength, setDataLength] = useState(articles.length);
-  const [order, setOrder] = useState("publishedDate desc");
+  const [listingOrder, setListingOrder] = useState(order);
 
   //filters
   const [search, setSearch] = useState<string>("");
@@ -63,7 +64,7 @@ const Home: NextPage<HomePageProps> = ({
     const start = itemsPerPage * pageCount;
     const end = start + itemsPerPage;
     const newArticleItems: Article[] = await client.fetch(
-      getArticlesQuery(order, start, end)
+      getArticlesQuery(listingOrder, start, end)
     );
 
     setPageCount(pageCount + 1);
@@ -90,6 +91,7 @@ const Home: NextPage<HomePageProps> = ({
       </div>
       <Profile configuration={configuration} />
       <div>
+        <label>Search</label>
         <input onChange={(e) => setSearch(e.target.value)} value={search} />
       </div>
       <InfiniteScroll
@@ -115,9 +117,6 @@ const Home: NextPage<HomePageProps> = ({
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const page: HomePage = await client.fetch(getItemQuery("homePage"));
   const configuration: Global = await client.fetch(getItemQuery("global"));
-
-  const itemsPerPage = 2;
-  const order = "publishedDate desc";
 
   const totalArticles = await client.fetch(getCountQuery("article"));
 
