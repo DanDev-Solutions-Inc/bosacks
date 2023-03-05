@@ -1,3 +1,20 @@
+import { getImageDimensions } from "@sanity/asset-utils";
+import { urlFor } from "@utils/image-helper";
+
+const image = ({ value }: any) => {
+  const { width, height } = getImageDimensions(value);
+  return (
+    <img
+      src={urlFor(value).width(800).fit("max").auto("format").url()}
+      alt={value.alt || " "}
+      loading="lazy"
+      style={{
+        aspectRatio: width / height,
+      }}
+    />
+  );
+};
+
 export const components = {
   marks: {
     link: ({ value, children }: any) => {
@@ -7,5 +24,15 @@ export const components = {
         </a>
       );
     },
+    html: ({ value, children }: any) => {
+      return (
+        <a href={value?.href} target="_blank" rel="noreferrer">
+          {children}
+        </a>
+      );
+    },
+  },
+  types: {
+    image,
   },
 };
