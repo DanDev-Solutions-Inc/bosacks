@@ -5,7 +5,6 @@ import { NextSeo } from "next-seo";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
-import { Global } from "@interfaces/sanity/Global";
 import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
@@ -17,12 +16,12 @@ import {
   getItemQuery,
 } from "@utils/groq-helper";
 import { publishedDateDesc, itemsPerPage } from "@utils/constants";
-import { Mail } from "@components/icons";
 
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 const Filters = dynamic(() => import("@components/filters"));
 const SubscribeModal = dynamic(() => import("@components/subscribe-modal"));
+const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
@@ -121,13 +120,7 @@ const Home: NextPage<HomePageProps> = ({
             })}
         </div>
       </InfiniteScroll>
-      <button
-        className="w-[100px] flex justify-center items-center py-2 space-x-2 text-[12px] fixed bottom-4 right-4 bg-primary text-white rounded-[4px]"
-        onClick={() => setIsOpen?.(!isOpen)}
-      >
-        <Mail />
-        <span>Subscribe</span>
-      </button>
+      <SubscribeButton isOpen={isOpen} setIsOpen={setIsOpen} />
       <SubscribeModal />
     </>
   );

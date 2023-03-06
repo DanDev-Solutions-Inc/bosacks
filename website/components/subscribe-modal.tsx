@@ -11,19 +11,21 @@ const SubscribeModal = () => {
 
   return (
     <div
-      style={{
-        display: isOpen ? "" : "none",
-      }}
+      className={`${
+        isOpen ? `fixed top-0` : `hidden`
+      } bg-white w-full h-screen bg-opacity-50 backdrop-blur-sm flex items-center justify-center px-[25px]`}
     >
-      <>
-        <div onClick={() => onClose()}>&#10005;</div>
+      <div className="bg-white w-[500px] border">
+        <div onClick={() => onClose()} className="p-4 cursor-pointer">
+          &#10005;
+        </div>
         {/* <!-- Begin Constant Contact Inline Form Code --> */}
         <div
           className="ctct-inline-form"
           data-form-id="88e876ec-d820-4726-bf21-f6eb669a159b"
         ></div>
         {/* <!-- End Constant Contact Inline Form Code --> */}
-      </>
+      </div>
     </div>
   );
 };

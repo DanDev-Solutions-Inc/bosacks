@@ -11,7 +11,6 @@ const Page = ({ children }: LayoutProps) => {
       <Navbar />
       <main>{children}</main>
       <Footer />
-      <SubscribeModal />
     </div>
   );
 };

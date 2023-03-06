@@ -20,3 +20,12 @@ select {
 .article p {
   margin-bottom: 25px;
 }
+
+.ctct-form-button {
+  background-color: #5C0E06 !important;
+  border: 1px solid #5C0E06 !important;
+}
+
+.ctct-form-header, .ctct-form-text {
+  text-align: center !important;
+}
