@@ -9,7 +9,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
   return (
     <div
-      className="cursor-pointer p-5 mt-5"
+      className="cursor-pointer"
       onClick={() =>
         router.push(`/${article.categorySlug.current}/${article.slug.current}`)
       }

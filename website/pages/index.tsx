@@ -24,6 +24,7 @@ const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
+const Filters = dynamic(() => import("@components/filters"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
@@ -101,28 +102,12 @@ const Home: NextPage<HomePageProps> = ({
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
       <FeaturedArticle article={articles[0]} />
-      <Profile configuration={configuration} />
-      <div>
-        <div>
-          <label className="font-bold">Search:</label>
-          <input
-            onKeyDown={(e) => {
-              if (e.key == "Enter" && e.shiftKey == false) {
-                onSearch();
-              }
-            }}
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
-        </div>
-        <div>
-          <p className="font-bold">Sort By:</p>
-          <select onChange={(e) => setListingOrder(e.target.value)}>
-            <option value="publishedDate desc">{`Published Date (Desc)`}</option>
-            <option value="publishedDate asc">{`Published Date (Asc)`}</option>
-          </select>
-        </div>
-      </div>
+      <Filters
+        search={search}
+        onSearch={onSearch}
+        setSearch={setSearch}
+        setListingOrder={setListingOrder}
+      />
       <InfiniteScroll
         dataLength={dataLength}
         next={() => onFetchMoreData()}
@@ -131,7 +116,7 @@ const Home: NextPage<HomePageProps> = ({
         loader={<ScrollMessage type="loading" message="Loading" />}
         endMessage={<ScrollMessage type="end" message="You've seen it all" />}
       >
-        <div>
+        <div className="container grid grid-cols-2">
           {getFilteredArticles() &&
             getFilteredArticles().map((article, index) => {
               return <ArticleItem key={index} article={article} />;

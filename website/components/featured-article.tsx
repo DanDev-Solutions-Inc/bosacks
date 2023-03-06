@@ -24,6 +24,7 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
               alt={article.title}
               width={1024}
               height={350}
+              priority
             />
           </Link>
         ) : (
@@ -35,11 +36,12 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
               alt={article.title}
               width={1024}
               height={350}
+              priority
             />
           </Link>
         )}
       </div>
-      <div className="flex flex-col space-y-4 justify-center">
+      <div className="flex flex-col space-y-3 md:space-y-4 justify-center">
         <span className="text-[12px] text-primary font-medium">
           {dateHelper(article.publishedDate)}
         </span>
@@ -47,11 +49,13 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           href={`/${article.categorySlug.current}/${article.slug.current}`}
           className="no-underline hover:text-primary transition-all"
         >
-          <h1 className="text-[28px] leading-[100%] font-bold">
+          <h1 className="text-[22px] md:text-[28px] leading-[100%] font-bold">
             {article.title}
           </h1>
         </Link>
-        <p>{truncateHelper(article.excerpt, 150)}</p>
+        <p className="text-[14px] text-grey">
+          {truncateHelper(article.excerpt, 150)}
+        </p>
         <div className="max-w-[150px]">
           <Button
             text="Read More"

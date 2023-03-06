@@ -6,7 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-a {
-    text-decoration: underline;
-    font-weight: bold;
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 14px;
 }
