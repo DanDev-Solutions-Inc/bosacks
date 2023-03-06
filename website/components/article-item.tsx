@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { ArticleItemProps } from "@interfaces/ArticleItemProps";
 import { urlFor } from "@utils/image-helper";
+import { snipDescription } from "@utils/string-helper";
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
       <div>Category: {article.category}</div>
       <div>Author: {article.author}</div>
       <div>{article.publishedDate}</div>
-      <div>{article.excerpt}</div>
+      <div>{snipDescription(article.excerpt)}</div>
     </div>
   );
 };

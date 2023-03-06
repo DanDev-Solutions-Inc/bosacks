@@ -1,10 +1,9 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { orderBy as sort } from "lodash";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
 import { Global } from "@interfaces/sanity/Global";
