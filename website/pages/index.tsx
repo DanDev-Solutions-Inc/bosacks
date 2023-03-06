@@ -94,13 +94,15 @@ const Home: NextPage<HomePageProps> = ({
     );
   };
 
+  console.log(articles);
+
   return (
     <>
       <NextSeo
         title={page.title}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-      <FeaturedArticle />
+      <FeaturedArticle article={articles[0]} />
       <Profile configuration={configuration} />
       <div>
         <div>
