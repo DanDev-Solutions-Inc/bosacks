@@ -54,7 +54,6 @@ export default Biography;
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const configuration: Global = await client.fetch(getItemQuery("global"));
-
   return {
     props: { configuration },
   };

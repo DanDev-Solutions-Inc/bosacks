@@ -19,15 +19,13 @@ import {
 import { publishedDateDesc, itemsPerPage } from "@utils/constants";
 import { Mail } from "@components/icons";
 
-const Profile = dynamic(() => import("@components/profile"));
-const Button = dynamic(() => import("@components/button"));
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 const Filters = dynamic(() => import("@components/filters"));
+const SubscribeModal = dynamic(() => import("@components/subscribe-modal"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
-  configuration,
   articles,
   totalArticles,
 }: HomePageProps) => {
@@ -130,21 +128,20 @@ const Home: NextPage<HomePageProps> = ({
         <Mail />
         <span>Subscribe</span>
       </button>
+      <SubscribeModal />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const page: HomePage = await client.fetch(getItemQuery("homePage"));
-  const configuration: Global = await client.fetch(getItemQuery("global"));
-
   const totalArticles = await client.fetch(getCountQuery("article"));
   const articles: Article[] = await client.fetch(
     getArticlesQuery(publishedDateDesc, 0, itemsPerPage)
   );
 
   return {
-    props: { page, configuration, articles, totalArticles },
+    props: { page, articles, totalArticles },
   };
 };
 
