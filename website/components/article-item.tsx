@@ -14,7 +14,7 @@ const CategoryPill = dynamic(() => import("@components/category-pill"));
 const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
   return (
-    <article>
+    <article className="mb-6 md:mb-0">
       <div>
         {article.image ? (
           <Link

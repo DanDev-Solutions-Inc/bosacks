@@ -17,6 +17,7 @@ import {
   getItemQuery,
 } from "@utils/groq-helper";
 import { publishedDateDesc, itemsPerPage } from "@utils/constants";
+import { Mail } from "@components/icons";
 
 const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
@@ -113,15 +114,22 @@ const Home: NextPage<HomePageProps> = ({
         scrollThreshold={0.25}
         loader={<ScrollMessage type="loading" message="Loading..." />}
         endMessage={<ScrollMessage type="end" message="You've seen it all!" />}
+        className="container"
       >
-        <div className="container grid md:grid-cols-2 gap-6" id="articles">
+        <div className="grid md:grid-cols-2 gap-6">
           {getFilteredArticles() &&
             getFilteredArticles().map((article, index) => {
               return <ArticleItem key={index} article={article} />;
             })}
         </div>
       </InfiniteScroll>
-      <Button text={"Subscribe"} onClick={() => setIsOpen?.(!isOpen)} />
+      <button
+        className="w-[100px] flex justify-center items-center py-2 space-x-2 text-[12px] fixed bottom-4 right-4 bg-primary text-white rounded-[4px]"
+        onClick={() => setIsOpen?.(!isOpen)}
+      >
+        <Mail />
+        <span>Subscribe</span>
+      </button>
     </>
   );
 };

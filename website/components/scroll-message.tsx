@@ -7,7 +7,7 @@ const ScrollMessage = ({ message, type }: ScrollMessageProps) => {
         className={`${
           type === "end"
             ? `cursor-pointer bg-primary text-white rounded-[4px] max-w-[150px] mx-auto p-2 text-center my-10 text-[14px]`
-            : `text-center my-10 text-[14px]`
+            : `bg-primary text-white rounded-[4px] max-w-[150px] mx-auto p-2 text-center my-10 text-[14px]`
         }`}
         onClick={() => {
           if (type === "loading") return;

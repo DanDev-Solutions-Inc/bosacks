@@ -7,7 +7,7 @@ const Filters = ({
   search,
 }: FiltersProps) => {
   return (
-    <div className="container md:flex md:space-x-5 mb-20">
+    <div className="container md:flex md:space-x-5 mb-10" id="articles">
       <div className="flex flex-col mb-8 md:mb-0">
         <label className="text-[12px] uppercase font-bold mb-2">Search</label>
         <input

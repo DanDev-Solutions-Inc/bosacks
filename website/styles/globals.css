@@ -12,3 +12,7 @@ select {
   appearance: none;
   font-size: 14px;
 }
+
+.infinite-scroll-component  {
+  overflow: hidden !important;
+}
