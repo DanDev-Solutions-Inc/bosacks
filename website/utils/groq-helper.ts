@@ -1,12 +1,13 @@
-import { Slug } from "@interfaces/sanity/Slug";
-
 export const getArticlesQuery = (
   order: string,
   start: number,
   end: number,
-  search?: string
+  search?: string,
+  category?: string
 ) => `
-*[_type == "article" ${search ? `&& title match "*${search}*"` : ""}]{
+*[_type == "article" ${search ? `&& title match "*${search}*"` : ""} ${
+  category ? `&& category->title == "${category}"` : ""
+}]{
   title,
   slug,
   publishedDate,
@@ -32,9 +33,13 @@ export const getArticleQuery = (slug: string) => `
 
 export const getItemQuery = (name: string) => `*[_type == "${name}"][0]`;
 
-export const getItemsQuery = (name: string) => `*[_type == "${name}"][0]`;
+export const getItemsQuery = (name: string) => `*[_type == "${name}"]`;
 
-export const getCountQuery = (name: string, search?: string) =>
-  `count(*[_type == "${name}" ${
-    search ? `&& title match "*${search}*"` : ""
+export const getCountQuery = (
+  name: string,
+  search?: string,
+  category?: string
+) =>
+  `count(*[_type == "${name}" ${search ? `&& title match "*${search}*"` : ""} ${
+    category ? `&& category->title == "${category}"` : ""
   }])`;

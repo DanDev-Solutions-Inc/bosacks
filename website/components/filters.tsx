@@ -5,6 +5,8 @@ const Filters = ({
   setSearch,
   setListingOrder,
   search,
+  setCategoryFilter,
+  categories,
 }: FiltersProps) => {
   return (
     <div className="container md:flex md:space-x-5 mb-10" id="articles">
@@ -32,36 +34,30 @@ const Filters = ({
             <option value="publishedDate desc">{`Published Date (Desc)`}</option>
             <option value="publishedDate asc">{`Published Date (Asc)`}</option>
           </select>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <label className="text-[12px] uppercase font-bold mb-2">
+          Filter By
+        </label>
+        <div className="flex space-x-5">
           <select
-            onChange={(e) => setListingOrder(e.target.value)}
+            onChange={(e) => setCategoryFilter(e.target.value)}
             className="border border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
           >
-            <option>Category...</option>
+            <option value="">Category...</option>
+            {categories &&
+              categories.map((category) => {
+                return (
+                  <option key={category._id} value={category.title}>
+                    {category.title}
+                  </option>
+                );
+              })}
           </select>
         </div>
       </div>
     </div>
-    // <div>
-    //   <div>
-    //     <label className="font-bold">Search:</label>
-    // <input
-    //   onKeyDown={(e) => {
-    //     if (e.key == "Enter" && e.shiftKey == false) {
-    //       onSearch();
-    //     }
-    //   }}
-    //   onChange={(e) => setSearch(e.target.value)}
-    //   value={search}
-    // />
-    //   </div>
-    //   <div>
-    //     <p className="font-bold">Sort By:</p>
-    // <select onChange={(e) => setListingOrder(e.target.value)}>
-    //   <option value="publishedDate desc">{`Published Date (Desc)`}</option>
-    //   <option value="publishedDate asc">{`Published Date (Asc)`}</option>
-    // </select>
-    //   </div>
-    // </div>
   );
 };
 

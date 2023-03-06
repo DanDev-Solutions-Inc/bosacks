@@ -14,8 +14,10 @@ import {
   getArticlesQuery,
   getCountQuery,
   getItemQuery,
+  getItemsQuery,
 } from "@utils/groq-helper";
 import { publishedDateDesc, itemsPerPage } from "@utils/constants";
+import { Category } from "@interfaces/sanity/Category";
 
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
@@ -26,6 +28,7 @@ const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 const Home: NextPage<HomePageProps> = ({
   page,
   articles,
+  categories,
   totalArticles,
 }: HomePageProps) => {
   const { isOpen, setIsOpen } = useContext(SubscribeModalContext);
@@ -34,6 +37,7 @@ const Home: NextPage<HomePageProps> = ({
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles);
   const [dataLength, setDataLength] = useState(articles.length);
   const [listingOrder, setListingOrder] = useState(publishedDateDesc);
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [search, setSearch] = useState<string>("");
 
   useMemo(() => {
@@ -56,6 +60,26 @@ const Home: NextPage<HomePageProps> = ({
     init();
   }, [listingOrder]);
 
+  useMemo(() => {
+    const init = async () => {
+      if (!categoryFilter) return;
+      console.log(
+        getArticlesQuery(listingOrder, 0, itemsPerPage, categoryFilter)
+      );
+      const articles: Article[] = await client.fetch(
+        getArticlesQuery(listingOrder, 0, itemsPerPage, categoryFilter)
+      );
+      setFilteredArticles(articles);
+      setPageCount(1);
+      const filteredCount = await client.fetch(
+        getCountQuery("article", search, categoryFilter)
+      );
+      console.log(articles.length, filteredCount);
+      setHasMore(articles.length !== filteredCount);
+    };
+    init();
+  }, [categoryFilter]);
+
   const getFilteredArticles = () => {
     return filteredArticles;
   };
@@ -64,7 +88,12 @@ const Home: NextPage<HomePageProps> = ({
     const start = itemsPerPage * pageCount;
     const end = start + itemsPerPage;
     const newArticleItems: Article[] = await client.fetch(
-      getArticlesQuery(listingOrder, start, end, search)
+      getArticlesQuery(listingOrder, start, end, search, categoryFilter)
+    );
+
+    console.log(
+      "fetch more",
+      getArticlesQuery(listingOrder, start, end, search, categoryFilter)
     );
 
     setPageCount(pageCount + 1);
@@ -103,6 +132,8 @@ const Home: NextPage<HomePageProps> = ({
         onSearch={onSearch}
         setSearch={setSearch}
         setListingOrder={setListingOrder}
+        setCategoryFilter={setCategoryFilter}
+        categories={categories}
       />
       <InfiniteScroll
         dataLength={dataLength}
@@ -128,13 +159,14 @@ const Home: NextPage<HomePageProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const page: HomePage = await client.fetch(getItemQuery("homePage"));
+  const categories: Category[] = await client.fetch(getItemsQuery("category"));
   const totalArticles = await client.fetch(getCountQuery("article"));
   const articles: Article[] = await client.fetch(
     getArticlesQuery(publishedDateDesc, 0, itemsPerPage)
   );
 
   return {
-    props: { page, articles, totalArticles },
+    props: { page, articles, categories, totalArticles },
   };
 };
 
