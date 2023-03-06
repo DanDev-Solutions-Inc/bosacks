@@ -23,6 +23,7 @@ import { publishedDateDesc, itemsPerPage } from "@utils/constants";
 const Profile = dynamic(() => import("@components/profile"));
 const Button = dynamic(() => import("@components/button"));
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
+const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
@@ -99,16 +100,7 @@ const Home: NextPage<HomePageProps> = ({
         title={page.title}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-      <div>
-        {page.heroImage && (
-          <Image
-            src={urlFor(page.heroImage).url()}
-            alt={page.heroImage.alt}
-            width={500}
-            height={500}
-          />
-        )}
-      </div>
+      <FeaturedArticle />
       <Profile configuration={configuration} />
       <div>
         <div>
