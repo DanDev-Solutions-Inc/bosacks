@@ -50,3 +50,6 @@
 /website/package-lock.json
 /cms/yarn.lock
 /cms/package-lock.json
+
+/migration/build/
+/migration/node_modules/
