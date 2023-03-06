@@ -7,11 +7,22 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: {},
+      padding: {
+        DEFAULT: "25px",
+      },
+      screens: {
+        sm: "1000px",
+        md: "1000px",
+        lg: "1000px",
+        xl: "1000px",
+        "2xl": "1000px",
+      },
     },
     extend: {
       fontFamily: {},
-      colors: {},
+      colors: {
+        primary: "#5C0E06",
+      },
     },
   },
   plugins: [],
