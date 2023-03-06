@@ -16,3 +16,7 @@ select {
 .infinite-scroll-component  {
   overflow: hidden !important;
 }
+
+.article p {
+  margin-bottom: 25px;
+}

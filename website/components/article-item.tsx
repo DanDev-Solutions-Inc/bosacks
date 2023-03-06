@@ -14,7 +14,7 @@ const CategoryPill = dynamic(() => import("@components/category-pill"));
 const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
   return (
-    <article className="mb-6 md:mb-0">
+    <article className="group">
       <div>
         {article.image ? (
           <Link
@@ -47,10 +47,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           </Link>
         )}
       </div>
-      <Link
-        href={`/${article.categorySlug.current}/${article.slug.current}`}
-        className="group"
-      >
+      <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
         <div className="flex flex-col space-y-3">
           <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
             {article.title}
