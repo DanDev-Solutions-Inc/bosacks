@@ -86,13 +86,14 @@ export default defineType({
       title: 'title',
       image: 'image',
       category: 'category.title',
+      publishedDate: 'publishedDate',
     },
     prepare(selection) {
-      const {title, image, category} = selection
+      const {title, image, category, publishedDate} = selection
       return {
         title,
         media: image,
-        subtitle: `${category}`,
+        subtitle: `${new Date(publishedDate).toLocaleDateString()} - ${category}`,
       }
     },
   },
