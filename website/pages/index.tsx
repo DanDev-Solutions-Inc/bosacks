@@ -94,8 +94,6 @@ const Home: NextPage<HomePageProps> = ({
     );
   };
 
-  console.log(articles);
-
   return (
     <>
       <NextSeo
