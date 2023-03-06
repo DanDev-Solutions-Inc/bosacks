@@ -4,11 +4,12 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { urlFor } from "@utils/image-helper";
 import { dateHelper } from "@utils/date-helper";
-import { truncateHelper } from "@utils/truncate-helper";
+import { snipDescription } from "@utils/string-helper";
 
 import { FeaturedArticleProps } from "@interfaces/FeaturedArticleProps";
 
 const Button = dynamic(() => import("@components/button"));
+const CategoryPill = dynamic(() => import("@components/category-pill"));
 
 const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
   const router = useRouter();
@@ -19,25 +20,30 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
-            <Image
-              src={urlFor(article.image).url()}
-              alt={article.title}
-              width={1024}
-              height={350}
-              priority
-            />
+            <div className="relative">
+              <Image
+                src={urlFor(article.image).url()}
+                alt={article.title}
+                width={1024}
+                height={350}
+                priority
+              />
+            </div>
           </Link>
         ) : (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
-            <Image
-              src="/assets/article-image-placeholder.jpeg"
-              alt={article.title}
-              width={1024}
-              height={350}
-              priority
-            />
+            <div className="relative">
+              <CategoryPill category={article.category} />
+              <Image
+                src="/assets/article-image-placeholder.jpeg"
+                alt={article.title}
+                width={1024}
+                height={350}
+                priority
+              />
+            </div>
           </Link>
         )}
       </div>
@@ -54,7 +60,7 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           </h1>
         </Link>
         <p className="text-[14px] text-grey">
-          {truncateHelper(article.excerpt, 150)}
+          {snipDescription(article.excerpt)}
         </p>
         <div className="max-w-[150px]">
           <Button

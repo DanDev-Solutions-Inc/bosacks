@@ -1,33 +1,92 @@
 import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 import { ArticleItemProps } from "@interfaces/ArticleItemProps";
 import { urlFor } from "@utils/image-helper";
 import { snipDescription } from "@utils/string-helper";
+import { dateHelper } from "@utils/date-helper";
+import { Arrow } from "./icons";
+
+const CategoryPill = dynamic(() => import("@components/category-pill"));
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
   const router = useRouter();
   return (
-    <div
-      className="cursor-pointer"
-      onClick={() =>
-        router.push(`/${article.categorySlug.current}/${article.slug.current}`)
-      }
-    >
-      {article.image && (
-        <Image
-          src={urlFor(article.image).url()}
-          alt={article.image.alt}
-          width={250}
-          height={250}
-        />
-      )}
-      <div className="font-bold">{article.title}</div>
-      <div>Category: {article.category}</div>
-      <div>Author: {article.author}</div>
-      <div>{article.publishedDate}</div>
-      <div>{snipDescription(article.excerpt)}</div>
-    </div>
+    <article>
+      <div>
+        {article.image ? (
+          <Link
+            href={`/${article.categorySlug.current}/${article.slug.current}`}
+          >
+            <div className="relative mb-4">
+              <Image
+                src={urlFor(article.image).url()}
+                alt={article.title}
+                width={1024}
+                height={350}
+                priority
+              />
+            </div>
+          </Link>
+        ) : (
+          <Link
+            href={`/${article.categorySlug.current}/${article.slug.current}`}
+          >
+            <div className="relative mb-4">
+              <CategoryPill category={article.category} />
+              <Image
+                src="/assets/article-image-placeholder.jpeg"
+                alt={article.title}
+                width={1024}
+                height={350}
+                priority
+              />
+            </div>
+          </Link>
+        )}
+      </div>
+      <Link
+        href={`/${article.categorySlug.current}/${article.slug.current}`}
+        className="group"
+      >
+        <div className="flex flex-col space-y-3">
+          <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
+            {article.title}
+          </h2>
+          <p className="text-grey text-[14px]">
+            {snipDescription(article.excerpt)}
+          </p>
+          <div className="flex justify-between">
+            <span className="text-[12px] text-primary">
+              {dateHelper(article.publishedDate)}
+            </span>
+            <Arrow />
+          </div>
+        </div>
+      </Link>
+    </article>
+    // <div
+    //   className="cursor-pointer"
+    //   onClick={() =>
+    //     router.push(`/${article.categorySlug.current}/${article.slug.current}`)
+    //   }
+    // >
+    //   {article.image && (
+    //     <Image
+    //       src={urlFor(article.image).url()}
+    //       alt={article.image.alt}
+    //       width={250}
+    //       height={250}
+    //     />
+    //   )}
+    //   <div className="font-bold">{article.title}</div>
+    //   <div>Category: {article.category}</div>
+    //   <div>Author: {article.author}</div>
+    //   <div>{article.publishedDate}</div>
+    //   <div>{snipDescription(article.excerpt)}</div>
+    // </div>
   );
 };
 

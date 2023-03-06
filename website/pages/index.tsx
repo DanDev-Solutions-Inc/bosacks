@@ -2,7 +2,6 @@ import { useContext, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import Image from "next/image";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
@@ -10,7 +9,6 @@ import { Global } from "@interfaces/sanity/Global";
 import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
-import { urlFor } from "@utils/image-helper";
 import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import ArticleItem from "@components/article-item";
 import {
@@ -113,10 +111,10 @@ const Home: NextPage<HomePageProps> = ({
         next={() => onFetchMoreData()}
         hasMore={hasMore}
         scrollThreshold={0.25}
-        loader={<ScrollMessage type="loading" message="Loading" />}
-        endMessage={<ScrollMessage type="end" message="You've seen it all" />}
+        loader={<ScrollMessage type="loading" message="Loading..." />}
+        endMessage={<ScrollMessage type="end" message="You've seen it all!" />}
       >
-        <div className="container grid grid-cols-2">
+        <div className="container grid md:grid-cols-2 gap-6" id="articles">
           {getFilteredArticles() &&
             getFilteredArticles().map((article, index) => {
               return <ArticleItem key={index} article={article} />;

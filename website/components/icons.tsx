@@ -35,4 +35,21 @@ const LinkedIn = () => {
   );
 };
 
-export { Twitter, LinkedIn };
+const Arrow = () => {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="text-primary transition-all"
+    >
+      <path
+        d="M5.16667 14.875L4.29167 14L12.875 5.41669H5.00001V4.16669H15V14.1667H13.75V6.29169L5.16667 14.875Z"
+        fill="CurrentColor"
+      />
+    </svg>
+  );
+};
+export { Twitter, LinkedIn, Arrow };

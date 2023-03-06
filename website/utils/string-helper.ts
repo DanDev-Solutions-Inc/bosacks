@@ -1,4 +1,4 @@
-const snipLength = 250;
+const snipLength = 150;
 
 export const snipDescription = (description: string) => {
   if (!description) return "";
