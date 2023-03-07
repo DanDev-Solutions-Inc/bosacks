@@ -8,16 +8,23 @@ import { Twitter, LinkedIn, CloseMenuIcon } from "./icons";
 import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { HamburgerMenuProps } from "@interfaces/HamburgerMenuProps";
 import useWindowSize from "../hooks/useWindowSize";
+import { useRouter } from "next/router";
 
 const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
   const { isOpen, toggle } = useContext(HamburgerMenuContext);
   const { windowSize } = useWindowSize();
+  const router = useRouter();
 
   useEffect(() => {
     if (windowSize.width >= 640) {
       onClose();
     }
   }, [windowSize.width]);
+
+  const onNavigate = (url: string) => {
+    toggle?.();
+    router.push(url);
+  };
 
   return (
     <Menu
@@ -53,20 +60,20 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
         <nav className="mt-12">
           <ul className="flex flex-col space-y-6 items-center text-[30px]">
             <li>
-              <Link
-                href="/#articles"
+              <div
+                onClick={() => onNavigate("/#articles")}
                 className="hover:text-primary font-normal no-underline"
               >
                 Articles
-              </Link>
+              </div>
             </li>
             <li>
-              <Link
-                href="/biography"
+              <div
+                onClick={() => onNavigate("/biography")}
                 className="hover:text-primary font-normal no-underline"
               >
                 Biography
-              </Link>
+              </div>
             </li>
             <li className="cursor-pointer flex space-x-4">
               {global && global.twitter && (
