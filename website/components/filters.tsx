@@ -13,7 +13,7 @@ const Filters = ({
       <div className="flex flex-col mb-8 md:mb-0">
         <label className="text-[12px] uppercase font-bold mb-2">Search</label>
         <input
-          className="border border-black text-[14px] h-[25px] outline-none px-1 w-full md:w-[200px]"
+          className="border-2 border-black text-[14px] h-[25px] outline-none px-1 w-full md:w-[200px] rounded-[4px]"
           onKeyDown={(e) => {
             if (e.key == "Enter" && e.shiftKey == false) {
               onSearch();
@@ -29,7 +29,7 @@ const Filters = ({
         <div className="flex space-x-5">
           <select
             onChange={(e) => setListingOrder(e.target.value)}
-            className="border border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
+            className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
           >
             <option value="publishedDate desc">{`Published Date (Desc)`}</option>
             <option value="publishedDate asc">{`Published Date (Asc)`}</option>
@@ -43,7 +43,7 @@ const Filters = ({
         <div className="flex space-x-5">
           <select
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
+            className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
           >
             <option value="">Category...</option>
             {categories &&
