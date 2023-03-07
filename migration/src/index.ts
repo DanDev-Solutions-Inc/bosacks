@@ -1,5 +1,4 @@
 import { createClient } from "@sanity/client";
-
 import { htmlToBlocks } from "@sanity/block-tools";
 
 import { convert } from "html-to-text";
@@ -8,8 +7,8 @@ import json from "./assets/agility-data.json";
 import { Author } from "./interfaces/Author";
 import { Category } from "./interfaces/Category";
 import { ArticleSanity } from "./interfaces/ArticleSanity";
-
 import { Schema } from "@sanity/schema";
+
 const { JSDOM } = require("jsdom");
 
 const client = createClient({
@@ -57,12 +56,12 @@ const main = async () => {
     // continue;
     try {
       //1 - author
-      console.log("importing... ", importData[1].title);
-      await client.createOrReplace(importData[1]);
+      // console.log("importing... ", importData[1].title);
+      // await client.createOrReplace(importData[1]);
 
-      //2 - category
-      console.log("importing... ", importData[2].title);
-      await client.createOrReplace(importData[2]);
+      // //2 - category
+      // console.log("importing... ", importData[2].title);
+      // await client.createOrReplace(importData[2]);
 
       //0 - article
       console.log("importing... ", importData[0].title);
@@ -71,7 +70,7 @@ const main = async () => {
       console.error((e as Error).message);
     }
 
-    await delay(1000);
+    await delay(250);
   }
 };
 
@@ -96,6 +95,47 @@ const getSlug = (title: string) => {
     .replace(/[^\w-]+/g, "");
 };
 
+const replaceAll = (string: string, search: string, replace: string) => {
+  return string.split(search).join(replace);
+};
+
+const replaceBoldAndItalics = (string: string) => {
+  let indexOfFontWeightBold = string.indexOf("font-weight: bold;");
+  while (indexOfFontWeightBold > 0) {
+    string = replaceSpan(string, indexOfFontWeightBold, "strong");
+    indexOfFontWeightBold = string.indexOf("font-weight: bold;");
+  }
+  let indexOfFontStyleItalic = string.indexOf("font-style: italic;");
+  while (indexOfFontStyleItalic > 0) {
+    string = replaceSpan(string, indexOfFontStyleItalic, "em");
+    indexOfFontStyleItalic = string.indexOf("font-weight: bold;");
+  }
+  return string;
+};
+
+const replaceSpan = (string: string, index: number, value: string) => {
+  if (index > 0) {
+    //parse starting tag
+    let startOfSpan = index;
+    while (string[startOfSpan] !== "<") {
+      startOfSpan--;
+    }
+    let endOfSpan = index;
+    while (string[endOfSpan] !== ">") {
+      endOfSpan++;
+    }
+    const startingBoldTag = string.substring(startOfSpan, endOfSpan + 1);
+    string = string.replace(startingBoldTag, `<${value}>`);
+
+    //parse ending tag
+    let startOfEndSpan = string.indexOf("</span>", index);
+    let stringAsChars = string.split("");
+    stringAsChars.splice(startOfEndSpan, 7, `</${value}>`);
+    string = stringAsChars.join("");
+  }
+  return string;
+};
+
 const transform = (_article: Article): [ArticleSanity, Author, Category] => {
   const authorId = `${_article.AuthorID}-agility-import`;
   const author: Author = {
@@ -117,7 +157,12 @@ const transform = (_article: Article): [ArticleSanity, Author, Category] => {
     },
   };
 
-  const blocks = htmlToBlocks(_article.TextBlob, blockContentType, {
+  let parsedTextBlob = replaceAll(_article.TextBlob, "div", "p");
+  parsedTextBlob = replaceBoldAndItalics(parsedTextBlob);
+
+  replaceBoldAndItalics(_article.TextBlob);
+
+  const blocks = htmlToBlocks(parsedTextBlob, blockContentType, {
     parseHtml: (html) => new JSDOM(html).window.document,
   });
 

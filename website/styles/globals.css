@@ -13,7 +13,7 @@ select {
   font-size: 14px;
 }
 
-.infinite-scroll-component  {
+.infinite-scroll-component {
   overflow: hidden !important;
 }
 
@@ -22,15 +22,17 @@ select {
 }
 
 .ctct-form-button {
-  background-color: #5C0E06 !important;
-  border: 1px solid #5C0E06 !important;
+  background-color: #5c0e06 !important;
+  border: 1px solid #5c0e06 !important;
 }
 
-.ctct-form-header, .ctct-form-text {
+.ctct-form-header,
+.ctct-form-text {
   text-align: center !important;
 }
 
-.bm-overlay, .bm-menu-wrap{
+.bm-overlay,
+.bm-menu-wrap {
   top: 0;
   background: white !important;
 }
@@ -41,4 +43,10 @@ select {
 
 .infinite-scroll-component__outerdiv {
   min-height: 600px;
+}
+
+div.article.text-grey a {
+  color: #5c0e06;
+  font-weight: 500;
+  text-decoration: underline;
 }
