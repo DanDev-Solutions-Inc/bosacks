@@ -5,7 +5,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
           {/* <!-- Begin Constant Contact Active Forms --> */}
           <Script id="constant-contact" strategy="afterInteractive">
             {`var _ctct_m="cf1083a536139286bb64b0721277ac0e";`}
@@ -17,10 +20,6 @@ export default class MyDocument extends Document {
             defer
           />
           {/* <!-- End Constant Contact Active Forms --> */}
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
         </body>
       </Html>
     );

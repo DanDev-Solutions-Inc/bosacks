@@ -22,7 +22,6 @@ import { Category } from "@interfaces/sanity/Category";
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 const Filters = dynamic(() => import("@components/filters"));
-const SubscribeModal = dynamic(() => import("@components/subscribe-modal"));
 const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 
 const Home: NextPage<HomePageProps> = ({
@@ -150,7 +149,6 @@ const Home: NextPage<HomePageProps> = ({
         </div>
       </InfiniteScroll>
       <SubscribeButton isOpen={isOpen} setIsOpen={setIsOpen} />
-      <SubscribeModal />
     </>
   );
 };
