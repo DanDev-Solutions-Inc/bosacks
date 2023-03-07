@@ -7,13 +7,13 @@ export const SubscribeModalContext = createContext<Partial<ModalContextType>>(
 );
 
 const SubscribeModalContextProvider = ({ children }: any) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <SubscribeModalContext.Provider
       value={{
-        isOpen,
-        setIsOpen,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

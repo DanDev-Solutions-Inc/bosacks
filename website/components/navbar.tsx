@@ -4,6 +4,7 @@ import { useContext, useMemo, useState } from "react";
 
 import HamburgerMenu from "./hamburger-menu";
 
+import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { Twitter, LinkedIn, HamburgerMenuIcon } from "./icons";
 import { client } from "@client";
@@ -12,6 +13,7 @@ import { Global } from "@interfaces/sanity/Global";
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
+  const { isModalOpen, setIsModalOpen } = useContext(SubscribeModalContext);
   const [global, setGlobal] = useState<Global>();
 
   useMemo(() => {
@@ -29,8 +31,8 @@ const Navbar = () => {
             <Image
               src="/assets/logo.png"
               alt={"Logo"}
-              width={120}
-              height={120}
+              width={180}
+              height={180}
             />
           </Link>
           <nav className="hidden sm:block">
@@ -51,7 +53,6 @@ const Navbar = () => {
                   Biography
                 </Link>
               </li>
-              <li>|</li>
               <li className="cursor-pointer">
                 {global && global.twitter && (
                   <a href={global.twitter} target="_blank">
@@ -65,6 +66,16 @@ const Navbar = () => {
                     <LinkedIn />
                   </a>
                 )}
+              </li>
+              <li
+                onClick={() => {
+                  if (setIsModalOpen) {
+                    setIsModalOpen(!isModalOpen);
+                  }
+                }}
+                className="bg-primary px-3 py-1 text-[13px] text-white rounded-[4px]"
+              >
+                Subscribe
               </li>
             </ul>
           </nav>

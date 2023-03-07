@@ -1,4 +1,4 @@
 export type ModalContextType = {
-  isOpen: boolean;
-  setIsOpen: Function;
+  isModalOpen: boolean;
+  setIsModalOpen: Function;
 };

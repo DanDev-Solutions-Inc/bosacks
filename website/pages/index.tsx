@@ -8,7 +8,6 @@ import { HomePageProps } from "@interfaces/HomePageProps";
 import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
-import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import ArticleItem from "@components/article-item";
 import {
   getArticlesQuery,
@@ -22,7 +21,6 @@ import { Category } from "@interfaces/sanity/Category";
 const ScrollMessage = dynamic(() => import("@components/scroll-message"));
 const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 const Filters = dynamic(() => import("@components/filters"));
-const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 
 const Home: NextPage<HomePageProps> = ({
   page,
@@ -30,7 +28,6 @@ const Home: NextPage<HomePageProps> = ({
   categories,
   totalArticles,
 }: HomePageProps) => {
-  const { isOpen, setIsOpen } = useContext(SubscribeModalContext);
   const [hasMore, setHasMore] = useState(articles.length !== totalArticles);
   const [pageCount, setPageCount] = useState(1);
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles);
@@ -130,7 +127,7 @@ const Home: NextPage<HomePageProps> = ({
   return (
     <>
       <NextSeo
-        title={page.title}
+        title={`${page.title} | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
       <FeaturedArticle article={articles[0]} />
@@ -161,7 +158,6 @@ const Home: NextPage<HomePageProps> = ({
             })}
         </div>
       </InfiniteScroll>
-      <SubscribeButton isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
