@@ -50,3 +50,7 @@ div.article.text-grey a {
   font-weight: 500;
   text-decoration: underline;
 }
+
+.ctct-form-defaults {
+  padding-top: 0 !important;
+}

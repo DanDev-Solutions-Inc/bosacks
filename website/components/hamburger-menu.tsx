@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,9 +10,15 @@ import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { HamburgerMenuProps } from "@interfaces/HamburgerMenuProps";
 import useWindowSize from "../hooks/useWindowSize";
 import { useRouter } from "next/router";
+import { SubscribeModalContext } from "@context/subscribe-modal-context";
+
+const Button = dynamic(() => import("@components/button"));
 
 const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
   const { isOpen, toggle } = useContext(HamburgerMenuContext);
+  const { isOpen: isModalOpen, setIsOpen: setIsModalOpen } = useContext(
+    SubscribeModalContext
+  );
   const { windowSize } = useWindowSize();
   const router = useRouter();
 
@@ -74,6 +81,16 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
               >
                 Biography
               </div>
+            </li>
+            <li>
+              <Button
+                text="Subscribe"
+                onClick={() => {
+                  if (setIsModalOpen) {
+                    setIsModalOpen(!isModalOpen);
+                  }
+                }}
+              />
             </li>
             <li className="cursor-pointer flex space-x-4">
               {global && global.twitter && (

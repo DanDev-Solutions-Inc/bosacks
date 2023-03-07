@@ -13,9 +13,9 @@ const SubscribeModal = () => {
     <div
       className={`${
         isOpen ? `fixed top-0` : `hidden`
-      } bg-white w-full h-screen bg-opacity-50 backdrop-blur-sm flex items-center justify-center px-[25px]`}
+      } z-[999999] bg-white w-full h-screen bg-opacity-50 backdrop-blur-sm flex items-center justify-center px-[25px]`}
     >
-      <div className="bg-white w-[500px] border">
+      <div className="bg-white w-[500px] border mt-10">
         <div onClick={() => onClose()} className="p-4 cursor-pointer">
           &#10005;
         </div>
