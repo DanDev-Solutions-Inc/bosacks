@@ -38,3 +38,7 @@ select {
 .bm-burger-button {
   display: none !important;
 }
+
+.infinite-scroll-component__outerdiv {
+  min-height: 600px;
+}
