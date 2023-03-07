@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useContext, useMemo, useState } from "react";
 
 import HamburgerMenu from "./hamburger-menu";
@@ -10,6 +11,8 @@ import { Twitter, LinkedIn, HamburgerMenuIcon } from "./icons";
 import { client } from "@client";
 import { getItemQuery } from "@utils/groq-helper";
 import { Global } from "@interfaces/sanity/Global";
+
+const Button = dynamic(() => import("@components/button"));
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
@@ -69,15 +72,15 @@ const Navbar = () => {
                   </a>
                 )}
               </li>
-              <li
-                onClick={() => {
-                  if (setIsModalOpen) {
-                    setIsModalOpen(!isModalOpen);
-                  }
-                }}
-                className="cursor-pointer bg-primary px-3 py-1 text-[13px] text-white rounded-[4px]"
-              >
-                Subscribe
+              <li>
+                <Button
+                  text="Subscribe"
+                  onClick={() => {
+                    if (setIsModalOpen) {
+                      setIsModalOpen(!isModalOpen);
+                    }
+                  }}
+                />
               </li>
             </ul>
           </nav>

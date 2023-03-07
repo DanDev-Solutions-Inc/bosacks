@@ -52,7 +52,6 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           {dateHelper(article.publishedDate)}
         </span>
         <Link
-          target="_blank"
           href={`/${article.categorySlug.current}/${article.slug.current}`}
           className="no-underline hover:text-primary transition-all"
         >
