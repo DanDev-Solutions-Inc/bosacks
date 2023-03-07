@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
-import { LayoutProps } from "../interfaces/LayoutProps";
+
+import { LayoutProps } from "@interfaces/LayoutProps";
 
 const Navbar = dynamic(() => import("@components/navbar"));
 const Footer = dynamic(() => import("@components/footer"));

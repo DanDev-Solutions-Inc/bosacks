@@ -1,3 +1,4 @@
+import { Block } from "./Block";
 import { Image } from "./Image";
 
 export interface Global {
@@ -11,4 +12,5 @@ export interface Global {
   linkedIn: string;
   avatarImage: Image;
   bio: string;
+  footerDescription: Block[];
 }

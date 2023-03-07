@@ -18,6 +18,12 @@ export default defineType({
       icon: TbSettings,
       default: false,
     },
+    {
+      name: 'footer',
+      title: 'Footer',
+      icon: TbSettings,
+      default: false,
+    },
   ],
   fields: [
     defineField({
@@ -61,6 +67,12 @@ export default defineType({
       title: 'LinkedIn',
       type: 'url',
       group: 'socials',
+    }),
+    defineField({
+      name: 'footerDescription',
+      title: 'Footer Description',
+      type: 'blockContent',
+      group: 'footer',
     }),
   ],
 })
