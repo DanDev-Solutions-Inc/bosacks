@@ -13,7 +13,9 @@ import { Global } from "@interfaces/sanity/Global";
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
-  const { isModalOpen, setIsModalOpen } = useContext(SubscribeModalContext);
+  const { isOpen: isModalOpen, setIsOpen: setIsModalOpen } = useContext(
+    SubscribeModalContext
+  );
   const [global, setGlobal] = useState<Global>();
 
   useMemo(() => {

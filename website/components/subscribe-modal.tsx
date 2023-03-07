@@ -3,16 +3,16 @@ import { useContext } from "react";
 import { SubscribeModalContext } from "@context/subscribe-modal-context";
 
 const SubscribeModal = () => {
-  const { isModalOpen, setIsModalOpen } = useContext(SubscribeModalContext);
+  const { isOpen, setIsOpen } = useContext(SubscribeModalContext);
 
   const onClose = () => {
-    setIsModalOpen?.(false);
+    setIsOpen?.(false);
   };
 
   return (
     <div
       className={`${
-        isModalOpen ? `fixed top-0` : `hidden`
+        isOpen ? `fixed top-0` : `hidden`
       } bg-white w-full h-screen bg-opacity-50 backdrop-blur-sm flex items-center justify-center px-[25px]`}
     >
       <div className="bg-white w-[500px] border">

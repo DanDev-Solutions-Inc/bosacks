@@ -12,7 +12,7 @@ const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
 
-  const { isOpen, setIsOpen } = useContext(SubscribeModalContext);
+  const { setIsOpen } = useContext(SubscribeModalContext);
   const [global, setGlobal] = useState<Global>();
 
   useMemo(() => {
@@ -37,11 +37,7 @@ const Footer = () => {
             )}
             <button
               className="mt-5 underline"
-              onClick={() => {
-                if (setIsOpen) {
-                  setIsOpen(true);
-                }
-              }}
+              onClick={() => setIsOpen?.(true)}
             >
               Subscribe for Free
             </button>
