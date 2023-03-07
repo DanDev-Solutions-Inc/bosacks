@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 
 import { ArticleItemProps } from "@interfaces/ArticleItemProps";
 import { urlFor } from "@utils/image-helper";
@@ -12,7 +11,6 @@ import { Arrow } from "./icons";
 const CategoryPill = dynamic(() => import("@components/category-pill"));
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
-  const router = useRouter();
   return (
     <article className="group">
       <div>

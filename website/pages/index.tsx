@@ -63,18 +63,17 @@ const Home: NextPage<HomePageProps> = ({
   useMemo(() => {
     const init = async () => {
       if (!categoryFilter) return;
-      console.log(
-        getArticlesQuery(listingOrder, 0, itemsPerPage, categoryFilter)
-      );
+
       const articles: Article[] = await client.fetch(
-        getArticlesQuery(listingOrder, 0, itemsPerPage, categoryFilter)
+        getArticlesQuery(listingOrder, 0, itemsPerPage, search, categoryFilter)
       );
       setFilteredArticles(articles);
       setPageCount(1);
+
       const filteredCount = await client.fetch(
         getCountQuery("article", search, categoryFilter)
       );
-      console.log(articles.length, filteredCount);
+
       setHasMore(articles.length !== filteredCount);
     };
     init();
@@ -91,15 +90,14 @@ const Home: NextPage<HomePageProps> = ({
       getArticlesQuery(listingOrder, start, end, search, categoryFilter)
     );
 
-    console.log(
-      "fetch more",
-      getArticlesQuery(listingOrder, start, end, search, categoryFilter)
-    );
-
-    setPageCount(pageCount + 1);
-    const updatedArticleItems = filteredArticles.concat(newArticleItems);
-    setFilteredArticles(updatedArticleItems);
-    setHasMore(updatedArticleItems.length !== totalArticles);
+    if (newArticleItems.length > 0) {
+      setPageCount(pageCount + 1);
+      const updatedArticleItems = filteredArticles.concat(newArticleItems);
+      setFilteredArticles(updatedArticleItems);
+      setHasMore(updatedArticleItems.length !== totalArticles);
+    } else {
+      setHasMore(false);
+    }
   };
 
   const onSearch = async () => {
