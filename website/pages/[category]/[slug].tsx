@@ -26,34 +26,26 @@ const Article = ({ article }: any) => {
       </div>
       <div>
         {article.image ? (
-          <Link
-            href={`/${article.categorySlug.current}/${article.slug.current}`}
-          >
-            <div className="relative mb-4">
-              <Image
-                src={urlFor(article.image).url()}
-                alt={article.title}
-                width={1024}
-                height={350}
-                priority
-              />
-            </div>
-          </Link>
+          <div className="relative mb-4">
+            <Image
+              src={urlFor(article.image).url()}
+              alt={article.title}
+              width={1024}
+              height={350}
+              priority
+            />
+          </div>
         ) : (
-          <Link
-            href={`/${article.categorySlug.current}/${article.slug.current}`}
-          >
-            <div className="relative mb-4">
-              <CategoryPill category={article.category} />
-              <Image
-                src="/assets/article-image-placeholder.jpeg"
-                alt={article.title}
-                width={1024}
-                height={350}
-                priority
-              />
-            </div>
-          </Link>
+          <div className="relative mb-4">
+            <CategoryPill category={article.category} />
+            <Image
+              src="/assets/article-image-placeholder.jpeg"
+              alt={article.title}
+              width={1024}
+              height={350}
+              priority
+            />
+          </div>
         )}
       </div>
       <div className="article text-grey">

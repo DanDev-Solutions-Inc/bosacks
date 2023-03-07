@@ -1,8 +1,6 @@
 import dynamic from "next/dynamic";
-import gsap from "gsap";
 
 import { FiltersProps } from "@interfaces/FiltersProps";
-import { useEffect, useState } from "react";
 
 const Button = dynamic(() => import("@components/button"));
 

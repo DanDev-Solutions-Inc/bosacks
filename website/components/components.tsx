@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { urlFor } from "@utils/image-helper";
 
@@ -22,7 +23,7 @@ export const components = {
     image: ({ value }: any) => {
       const { width, height } = getImageDimensions(value);
       return (
-        <img
+        <Image
           src={urlFor(value).width(800).fit("max").auto("format").url()}
           alt={value.alt || " "}
           loading="lazy"
