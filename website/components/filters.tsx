@@ -1,4 +1,10 @@
+import dynamic from "next/dynamic";
+import gsap from "gsap";
+
 import { FiltersProps } from "@interfaces/FiltersProps";
+import { useEffect, useState } from "react";
+
+const Button = dynamic(() => import("@components/button"));
 
 const Filters = ({
   onSearch,
@@ -9,52 +15,79 @@ const Filters = ({
   categories,
 }: FiltersProps) => {
   return (
-    <div className="container md:flex md:space-x-5 mb-10" id="articles">
-      <div className="flex flex-col mb-8 md:mb-0">
+    <div className="container">
+      <div className="hidden md:grid sm:grid-cols-2 md:grid-cols-4 gap-6">
         <label className="text-[12px] uppercase font-bold mb-2">Search</label>
-        <input
-          className="border-2 border-black text-[14px] h-[25px] outline-none px-1 w-full md:w-[200px] rounded-[4px]"
-          onKeyDown={(e) => {
-            if (e.key == "Enter" && e.shiftKey == false) {
-              onSearch();
-            }
-          }}
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-          placeholder="Search..."
-        />
-      </div>
-      <div className="flex flex-col">
         <label className="text-[12px] uppercase font-bold mb-2">Sort By</label>
-        <div className="flex space-x-5">
-          <select
-            onChange={(e) => setListingOrder(e.target.value)}
-            className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
-          >
-            <option value="publishedDate desc">{`Published Date (Desc)`}</option>
-            <option value="publishedDate asc">{`Published Date (Asc)`}</option>
-          </select>
-        </div>
-      </div>
-      <div className="flex flex-col">
         <label className="text-[12px] uppercase font-bold mb-2">
           Filter By
         </label>
-        <div className="flex space-x-5">
-          <select
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[25px] outline-none px-1 w-[50%] md:w-[200px]"
-          >
-            <option value="">Category...</option>
-            {categories &&
-              categories.map((category) => {
-                return (
-                  <option key={category._id} value={category.title}>
-                    {category.title}
-                  </option>
-                );
-              })}
-          </select>
+      </div>
+      <div id="articles">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex flex-col">
+            <label className="text-[12px] uppercase font-bold mb-2 md:hidden">
+              Search
+            </label>
+            <input
+              className="border-2 border-black text-[14px] h-[40px] outline-none px-2 pt-[1px] w-[100%] rounded-[4px]"
+              onKeyDown={(e) => {
+                if (e.key == "Enter" && e.shiftKey == false) {
+                  onSearch();
+                }
+              }}
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              placeholder="Search..."
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[12px] uppercase font-bold mb-2 md:hidden">
+              Sort By
+            </label>
+            <div className="flex space-x-5">
+              <select
+                onChange={(e) => setListingOrder(e.target.value)}
+                className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
+              >
+                <option value="publishedDate desc">{`Sort by Published Date (Desc)`}</option>
+                <option value="publishedDate asc">{`Sort by Published Date (Asc)`}</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[12px] uppercase font-bold mb-2 md:hidden">
+              Filter By
+            </label>
+            <div className="flex space-x-5">
+              <select
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
+              >
+                <option value="">Filter by Category...</option>
+                {categories &&
+                  categories.map((category) => {
+                    return (
+                      <option key={category._id} value={category.title}>
+                        {category.title}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div className="sm:h-[26px] md:h-0" />
+            <Button
+              text="Clear"
+              onClick={() => {
+                setSearch("");
+                setListingOrder("publishedDate desc");
+                setCategoryFilter("");
+                onSearch();
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

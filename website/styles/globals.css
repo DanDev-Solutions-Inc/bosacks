@@ -29,3 +29,12 @@ select {
 .ctct-form-header, .ctct-form-text {
   text-align: center !important;
 }
+
+.bm-overlay, .bm-menu-wrap{
+  top: 0;
+  background: white !important;
+}
+
+.bm-burger-button {
+  display: none !important;
+}

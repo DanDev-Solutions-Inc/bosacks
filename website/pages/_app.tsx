@@ -4,6 +4,7 @@ import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppLayoutProps } from "next/app";
 
 import SubscribeModalContextProvider from "@context/subscribe-modal-context";
+import HamburgerMenuContextProvider from "../context/hamburger-menu-context";
 
 import "@styles/globals.css";
 
@@ -17,7 +18,9 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
     Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);
   return (
     <SubscribeModalContextProvider>
-      {getLayout(<Component {...pageProps} />)}
+      <HamburgerMenuContextProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </HamburgerMenuContextProvider>
     </SubscribeModalContextProvider>
   );
 };

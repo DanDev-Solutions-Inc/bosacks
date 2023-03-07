@@ -17,6 +17,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         {article.image ? (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
+            target="_blank"
           >
             <div className="relative mb-4">
               <Image
@@ -31,6 +32,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         ) : (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
+            target="_blank"
           >
             <div className="relative mb-4">
               <CategoryPill category={article.category} />
@@ -45,7 +47,10 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           </Link>
         )}
       </div>
-      <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
+      <Link
+        href={`/${article.categorySlug.current}/${article.slug.current}`}
+        target="_blank"
+      >
         <div className="flex flex-col space-y-3">
           <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
             {article.title}
@@ -62,26 +67,6 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         </div>
       </Link>
     </article>
-    // <div
-    //   className="cursor-pointer"
-    //   onClick={() =>
-    //     router.push(`/${article.categorySlug.current}/${article.slug.current}`)
-    //   }
-    // >
-    //   {article.image && (
-    //     <Image
-    //       src={urlFor(article.image).url()}
-    //       alt={article.image.alt}
-    //       width={250}
-    //       height={250}
-    //     />
-    //   )}
-    //   <div className="font-bold">{article.title}</div>
-    //   <div>Category: {article.category}</div>
-    //   <div>Author: {article.author}</div>
-    //   <div>{article.publishedDate}</div>
-    //   <div>{snipDescription(article.excerpt)}</div>
-    // </div>
   );
 };
 

@@ -8,9 +8,9 @@ const SubscribeModal = dynamic(() => import("@components/subscribe-modal"));
 
 const Page = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <div id="outer-container">
       <Navbar />
-      <main>{children}</main>
+      <main id="page-wrap">{children}</main>
       <Footer />
       <SubscribeModal />
     </div>

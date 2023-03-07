@@ -139,7 +139,7 @@ const Home: NextPage<HomePageProps> = ({
         scrollThreshold={0.25}
         loader={<ScrollMessage type="loading" message="Loading..." />}
         endMessage={<ScrollMessage type="end" message="You've seen it all!" />}
-        className="container"
+        className="container mt-10"
       >
         <div className="grid md:grid-cols-2 gap-6">
           {getFilteredArticles() &&

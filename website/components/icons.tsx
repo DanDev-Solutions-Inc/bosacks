@@ -1,8 +1,10 @@
-const Twitter = () => {
+import { IconSizeProps } from "@interfaces/IconSizeProps";
+
+const Twitter = ({ size }: IconSizeProps) => {
   return (
     <svg
-      width="15"
-      height="15"
+      width={size === "lg" ? "21" : "15"}
+      height={size === "lg" ? "21" : "15"}
       viewBox="0 0 21 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -18,12 +20,12 @@ const Twitter = () => {
   );
 };
 
-const LinkedIn = () => {
+const LinkedIn = ({ size }: IconSizeProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="15"
-      height="15"
+      width={size === "lg" ? "21" : "15"}
+      height={size === "lg" ? "21" : "15"}
       viewBox="0 0 24 24"
       className="hover:text-primary transition-all"
     >
@@ -69,4 +71,38 @@ const Mail = () => {
     </svg>
   );
 };
-export { Twitter, LinkedIn, Arrow, Mail };
+
+const HamburgerMenuIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="30"
+      viewBox="0 96 960 960"
+      width="30"
+      className="hover:text-primary transition-all"
+    >
+      <path
+        fill="CurrentColor"
+        d="M130.001 801.384V756h699.998v45.384H130.001Zm0-202.692v-45.384h699.998v45.384H130.001Zm0-202.692v-45.384h699.998V396H130.001Z"
+      />
+    </svg>
+  );
+};
+
+const CloseMenuIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="30"
+      viewBox="0 96 960 960"
+      width="30"
+      className="hover:text-primary transition-all"
+    >
+      <path
+        fill="CurrentColor"
+        d="m250.923 837.076-31.999-31.999L448.001 576 218.924 346.923l31.999-31.999L480 544.001l229.077-229.077 31.999 31.999L511.999 576l229.077 229.077-31.999 31.999L480 607.999 250.923 837.076Z"
+      />
+    </svg>
+  );
+};
+export { Twitter, LinkedIn, Arrow, Mail, HamburgerMenuIcon, CloseMenuIcon };

@@ -19,8 +19,8 @@ const Article = ({ article }: any) => {
         {article.title}
       </h1>
       <div className="flex space-x-4 mb-4">
-        <p className="text-[14px] text-grey">By {article.author}</p>
-        <p className="text-[14px] text-grey">
+        <p className="text-[14px] text-primary">By {article.author}</p>
+        <p className="text-[14px] text-primary">
           {dateHelper(article.publishedDate)}
         </p>
       </div>
@@ -56,7 +56,7 @@ const Article = ({ article }: any) => {
           </Link>
         )}
       </div>
-      <div className="article">
+      <div className="article text-grey">
         {article.body && (
           <PortableText value={article.body} components={components} />
         )}
