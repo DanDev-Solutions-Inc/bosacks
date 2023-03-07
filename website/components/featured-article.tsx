@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { urlFor } from "@utils/image-helper";
 import { dateHelper } from "@utils/date-helper";
 import { snipDescription } from "@utils/string-helper";
@@ -11,12 +12,12 @@ const Button = dynamic(() => import("@components/button"));
 const CategoryPill = dynamic(() => import("@components/category-pill"));
 
 const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
+  const router = useRouter();
   return (
     <div className="container grid md:grid-cols-2 gap-6 my-10">
       <div>
         {article.image ? (
           <Link
-            target="_blank"
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
             <div className="relative">
@@ -31,7 +32,6 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           </Link>
         ) : (
           <Link
-            target="_blank"
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
             <div className="relative">
@@ -67,9 +67,8 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
           <Button
             text="Read More"
             onClick={() =>
-              window.open(
-                `/${article.categorySlug.current}/${article.slug.current}`,
-                "_blank"
+              router.push(
+                `/${article.categorySlug.current}/${article.slug.current}`
               )
             }
           />

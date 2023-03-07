@@ -17,7 +17,6 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         {article.image ? (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
-            target="_blank"
           >
             <div className="relative mb-4">
               <Image
@@ -32,7 +31,6 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         ) : (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
-            target="_blank"
           >
             <div className="relative mb-4">
               <CategoryPill category={article.category} />
@@ -47,10 +45,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           </Link>
         )}
       </div>
-      <Link
-        href={`/${article.categorySlug.current}/${article.slug.current}`}
-        target="_blank"
-      >
+      <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
         <div className="flex flex-col space-y-3">
           <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
             {article.title}
