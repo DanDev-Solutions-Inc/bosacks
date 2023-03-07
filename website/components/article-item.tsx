@@ -18,13 +18,13 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
-            <div className="relative mb-4">
+            <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
               <Image
                 src={urlFor(article.image).url()}
                 alt={article.title}
-                width={1024}
-                height={350}
+                fill
                 priority
+                objectFit="cover"
               />
             </div>
           </Link>
@@ -32,13 +32,12 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
-            <div className="relative mb-4">
+            <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
               <CategoryPill category={article.category} />
               <Image
                 src="/assets/article-image-placeholder.jpeg"
                 alt={article.title}
-                width={1024}
-                height={350}
+                fill
                 priority
               />
             </div>

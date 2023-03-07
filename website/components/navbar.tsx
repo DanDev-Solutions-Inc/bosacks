@@ -73,7 +73,7 @@ const Navbar = () => {
                     setIsModalOpen(!isModalOpen);
                   }
                 }}
-                className="bg-primary px-3 py-1 text-[13px] text-white rounded-[4px]"
+                className="cursor-pointer bg-primary px-3 py-1 text-[13px] text-white rounded-[4px]"
               >
                 Subscribe
               </li>
