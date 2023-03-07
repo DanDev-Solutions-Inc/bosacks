@@ -7,10 +7,13 @@ const Button = dynamic(() => import("@components/button"));
 const Filters = ({
   onSearch,
   setSearch,
+  listingOrder,
   setListingOrder,
   search,
+  categoryFilter,
   setCategoryFilter,
   categories,
+  onClear,
 }: FiltersProps) => {
   return (
     <div className="container">
@@ -46,6 +49,7 @@ const Filters = ({
             <div className="flex space-x-5">
               <select
                 onChange={(e) => setListingOrder(e.target.value)}
+                value={listingOrder}
                 className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
               >
                 <option value="publishedDate desc">{`Sort by Published Date (Desc)`}</option>
@@ -60,6 +64,7 @@ const Filters = ({
             <div className="flex space-x-5">
               <select
                 onChange={(e) => setCategoryFilter(e.target.value)}
+                value={categoryFilter}
                 className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
               >
                 <option value="">Filter by Category...</option>
@@ -76,15 +81,7 @@ const Filters = ({
           </div>
           <div className="flex flex-col">
             <div className="sm:h-[26px] md:h-0" />
-            <Button
-              text="Clear"
-              onClick={() => {
-                setSearch("");
-                setListingOrder("publishedDate desc");
-                setCategoryFilter("");
-                onSearch();
-              }}
-            />
+            <Button text="Clear" onClick={() => onClear()} />
           </div>
         </div>
       </div>

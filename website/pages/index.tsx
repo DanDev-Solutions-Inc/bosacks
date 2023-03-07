@@ -117,6 +117,18 @@ const Home: NextPage<HomePageProps> = ({
     );
   };
 
+  const onClear = async () => {
+    setFilteredArticles(articles);
+
+    setHasMore(articles.length !== totalArticles);
+    setDataLength(articles.length);
+    setPageCount(1);
+
+    setListingOrder(publishedDateDesc);
+    setCategoryFilter("");
+    setSearch("");
+  };
+
   return (
     <>
       <NextSeo
@@ -128,9 +140,12 @@ const Home: NextPage<HomePageProps> = ({
         search={search}
         onSearch={onSearch}
         setSearch={setSearch}
+        listingOrder={listingOrder}
         setListingOrder={setListingOrder}
+        categoryFilter={categoryFilter}
         setCategoryFilter={setCategoryFilter}
         categories={categories}
+        onClear={onClear}
       />
       <InfiniteScroll
         dataLength={dataLength}
