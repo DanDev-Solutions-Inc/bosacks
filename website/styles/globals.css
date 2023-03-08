@@ -51,6 +51,10 @@ div.article.text-grey a {
   text-decoration: underline;
 }
 
+.article p a {
+  display: inline-block;
+}
+
 .ctct-form-defaults {
   padding-top: 0 !important;
 }
