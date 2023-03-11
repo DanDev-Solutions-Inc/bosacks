@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
 import { dateHelper } from "@utils/date-helper";

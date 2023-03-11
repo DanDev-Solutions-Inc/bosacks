@@ -58,3 +58,7 @@ div.article.text-grey a {
 .ctct-form-defaults {
   padding-top: 0 !important;
 }
+
+p {
+  margin-bottom: 15px;
+}
