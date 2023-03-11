@@ -1,11 +1,10 @@
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { GetServerSideProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { HomePageProps } from "@interfaces/HomePageProps";
-import { HomePage } from "@interfaces/sanity/HomePage";
 import { client } from "@client";
 import { Article } from "@interfaces/sanity/Article";
 import ArticleItem from "@components/article-item";
@@ -23,7 +22,6 @@ const FeaturedArticle = dynamic(() => import("@components/featured-article"));
 const Filters = dynamic(() => import("@components/filters"));
 
 const Home: NextPage<HomePageProps> = ({
-  page,
   articles,
   categories,
   totalArticles,
@@ -127,7 +125,7 @@ const Home: NextPage<HomePageProps> = ({
   return (
     <>
       <NextSeo
-        title={`${page.title} | BoSacks`}
+        title={`Biography | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
       <FeaturedArticle article={articles[0]} />
@@ -163,7 +161,6 @@ const Home: NextPage<HomePageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
-  const page: HomePage = await client.fetch(getItemQuery("homePage"));
   const categories: Category[] = await client.fetch(getItemsQuery("category"));
   const totalArticles = await client.fetch(getCountQuery("article"));
   const articles: Article[] = await client.fetch(
@@ -171,7 +168,7 @@ export const getServerSideProps: GetServerSideProps = async (_context) => {
   );
 
   return {
-    props: { page, articles, categories, totalArticles },
+    props: { articles, categories, totalArticles },
   };
 };
 

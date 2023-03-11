@@ -10,11 +10,20 @@ import { getItemQuery } from "@utils/groq-helper";
 import { LinkedIn, Twitter } from "@components/icons";
 import { NextSeo } from "next-seo";
 import { PortableText } from "@portabletext/react";
+import { components } from "@components/components";
+import useTimeout from "../hooks/useTimeout";
+import { useState } from "react";
 
 const Button = dynamic(() => import("@components/button"));
 
 const Biography = ({ configuration }: BiographyPageProps) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useTimeout(() => setLoading(false), 1000);
+
+  if (loading) return <div className="h-[100vh]" />;
+
   return (
     <>
       <NextSeo
@@ -32,7 +41,7 @@ const Biography = ({ configuration }: BiographyPageProps) => {
             className="rounded-full mx-auto mb-8"
           />
           <p className="text-[16px] text-[#333]">
-            <PortableText value={configuration.bio} />
+            <PortableText value={configuration.bio} components={components} />
           </p>
           <ul className="flex justify-center mt-10 space-x-4">
             <li>

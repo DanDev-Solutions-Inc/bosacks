@@ -24,6 +24,7 @@ const Navbar = () => {
     };
     init();
   }, []);
+
   return (
     <>
       <header className="container py-4">

@@ -39,7 +39,7 @@ const Filters = ({
               }}
               onChange={(e) => setSearch(e.target.value)}
               value={search}
-              placeholder="Search..."
+              placeholder="Search by Title"
             />
           </div>
           <div className="flex flex-col">
@@ -50,10 +50,10 @@ const Filters = ({
               <select
                 onChange={(e) => setListingOrder(e.target.value)}
                 value={listingOrder}
-                className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
+                className="border-2 text-black rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
               >
-                <option value="publishedDate desc">{`Sort by Published Date (Desc)`}</option>
-                <option value="publishedDate asc">{`Sort by Published Date (Asc)`}</option>
+                <option value="publishedDate desc">{`Newest to Oldest`}</option>
+                <option value="publishedDate asc">{`Oldest to Newest`}</option>
               </select>
             </div>
           </div>
@@ -65,9 +65,9 @@ const Filters = ({
               <select
                 onChange={(e) => setCategoryFilter(e.target.value)}
                 value={categoryFilter}
-                className="border-2 rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
+                className="border-2 text-black rounded-[4px] text-grey border-black text-[14x] h-[40px] outline-none px-2 pt-[1px] w-[100%]"
               >
-                <option value="">Filter by Category...</option>
+                <option value="">Filter by Category</option>
                 {categories &&
                   categories.map((category) => {
                     return (
