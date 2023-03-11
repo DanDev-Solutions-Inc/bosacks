@@ -12,7 +12,7 @@ import { client } from "@client";
 import { getItemQuery } from "@utils/groq-helper";
 import { Global } from "@interfaces/sanity/Global";
 
-const Button = dynamic(() => import("@components/button"));
+const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
@@ -32,16 +32,19 @@ const Navbar = () => {
     <>
       <header className="container py-4">
         <div className="flex justify-between items-center">
-          <Link href="/">
+          <Link
+            href="/"
+            className="relative w-[220px] h-[100px] md:w-[280px] md:h-[120px]"
+          >
             <Image
               src="/assets/logo.png"
               alt={"Logo"}
-              width={180}
-              height={180}
+              fill
+              className="object-fit"
             />
           </Link>
           <nav className="hidden sm:block">
-            <ul className="flex space-x-4 items-center text-[14px]">
+            <ul className="flex space-x-4 items-center text-[146x]">
               <li>
                 <Link
                   href="/#articles"
@@ -61,19 +64,19 @@ const Navbar = () => {
               <li className="cursor-pointer">
                 {global && global.twitter && (
                   <a href={global.twitter} target="_blank">
-                    <Twitter />
+                    <Twitter size="lg" />
                   </a>
                 )}
               </li>
               <li className="cursor-pointer">
                 {global && global.linkedIn && (
                   <a href={global.linkedIn} target="_blank">
-                    <LinkedIn />
+                    <LinkedIn size="lg" />
                   </a>
                 )}
               </li>
               <li>
-                <Button
+                <SubscribeButton
                   text="Subscribe"
                   onClick={() => {
                     if (setIsModalOpen) {
