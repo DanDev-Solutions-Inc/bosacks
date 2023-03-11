@@ -48,7 +48,7 @@ const Article = ({ article }: any) => {
           </div>
         )}
       </div>
-      <div className="article text-grey">
+      <div className="article text-[#333]">
         {article.body && (
           <PortableText value={article.body} components={components} />
         )}

@@ -49,7 +49,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
             {article.title}
           </h2>
-          <p className="text-grey text-[14px]">
+          <p className="text-[#333] text-[14px]">
             {snipDescription(article.excerpt)}
           </p>
           <div className="flex justify-between">
