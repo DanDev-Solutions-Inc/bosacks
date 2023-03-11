@@ -21,6 +21,7 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
             <div className="relative">
+              <CategoryPill category={article.category} />
               <Image
                 src={urlFor(article.image).url()}
                 alt={article.title}

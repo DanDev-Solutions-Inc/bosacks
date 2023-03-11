@@ -21,28 +21,28 @@ const Biography = ({ configuration }: BiographyPageProps) => {
         title={`Biography | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-      <section className="h-screen flex justify-center items-center container">
-        <div className="text-center">
+      <section className="container mt-40">
+        <div className="">
           <Image
             src={urlFor(configuration.avatarImage).url()}
             alt={configuration.title}
-            width={120}
-            height={120}
+            width={180}
+            height={180}
             priority
             className="rounded-full mx-auto mb-8"
           />
-          <p className="text-[16px] max-w-[600px] text-grey">
+          <p className="text-[16px] text-[#333]">
             <PortableText value={configuration.bio} />
           </p>
-          <ul className="flex justify-center mt-4 space-x-4">
+          <ul className="flex justify-center mt-10 space-x-4">
             <li>
               <a href={configuration.twitter}>
-                <Twitter />
+                <Twitter size="lg" />
               </a>
             </li>
             <li>
               <a href={configuration.linkedIn}>
-                <LinkedIn />
+                <LinkedIn size="lg" />
               </a>
             </li>
           </ul>

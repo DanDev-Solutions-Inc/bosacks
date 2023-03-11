@@ -37,10 +37,19 @@ const Navbar = () => {
               alt={"Logo"}
               fill
               className="object-fit"
+              sizes="100%"
             />
           </Link>
           <nav className="hidden sm:block">
-            <ul className="flex space-x-4 items-center text-[146x]">
+            <ul className="flex space-x-4 items-center text-[14px] md:text-[16px]">
+              <li>
+                <Link
+                  href="/"
+                  className="hover:text-primary font-normal no-underline"
+                >
+                  Home
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/#articles"
