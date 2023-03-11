@@ -20,7 +20,7 @@ const Biography = ({ configuration }: BiographyPageProps) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-  useTimeout(() => setLoading(false), 1000);
+  useTimeout(() => setLoading(false), 0);
 
   if (loading) return <div className="h-[100vh]" />;
 
