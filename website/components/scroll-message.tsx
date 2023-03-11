@@ -15,7 +15,7 @@ const ScrollMessage = ({ message, type }: ScrollMessageProps) => {
         }}
       >
         <div>
-          <p>{message}</p>
+          <span>{message}</span>
         </div>
       </div>
     </div>

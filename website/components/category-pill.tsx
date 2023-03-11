@@ -3,7 +3,7 @@ import { CategoryPillProps } from "@interfaces/CategoryPillProps";
 const CategoryPill = ({ category }: CategoryPillProps) => {
   return (
     <div className="z-[10] absolute px-2 py-1 bg-primary font-medium text-white text-[10px] rounded-[4px] top-4 left-4">
-      <p>{category}</p>
+      <span>{category}</span>
     </div>
   );
 };

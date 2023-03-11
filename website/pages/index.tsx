@@ -44,6 +44,7 @@ const Home: NextPage<HomePageProps> = ({
 
   useMemo(() => {
     const init = async () => {
+      if (!listingOrder) return;
       const articles: Article[] = await client.fetch(
         getArticlesQuery(listingOrder, 0, itemsPerPage)
       );
