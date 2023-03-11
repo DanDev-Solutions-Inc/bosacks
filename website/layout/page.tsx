@@ -4,7 +4,6 @@ import { LayoutProps } from "@interfaces/LayoutProps";
 
 const Navbar = dynamic(() => import("@components/navbar"));
 const Footer = dynamic(() => import("@components/footer"));
-const SubscribeModal = dynamic(() => import("@components/subscribe-modal"));
 
 const Page = ({ children }: LayoutProps) => {
   return (
@@ -12,7 +11,6 @@ const Page = ({ children }: LayoutProps) => {
       <Navbar />
       <main id="page-wrap">{children}</main>
       <Footer />
-      <SubscribeModal />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppLayoutProps } from "next/app";
 
-import SubscribeModalContextProvider from "@context/subscribe-modal-context";
 import HamburgerMenuContextProvider from "../context/hamburger-menu-context";
 
 import "@styles/globals.css";
@@ -17,11 +16,9 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   const getLayout =
     Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);
   return (
-    <SubscribeModalContextProvider>
-      <HamburgerMenuContextProvider>
-        {getLayout(<Component {...pageProps} />)}
-      </HamburgerMenuContextProvider>
-    </SubscribeModalContextProvider>
+    <HamburgerMenuContextProvider>
+      {getLayout(<Component {...pageProps} />)}
+    </HamburgerMenuContextProvider>
   );
 };
 

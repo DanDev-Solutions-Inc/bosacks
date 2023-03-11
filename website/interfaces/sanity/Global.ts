@@ -11,6 +11,7 @@ export interface Global {
   twitter: string;
   linkedIn: string;
   avatarImage: Image;
-  bio: string;
+  bio: Block[];
   footerDescription: Block[];
+  subscribeLink: string;
 }

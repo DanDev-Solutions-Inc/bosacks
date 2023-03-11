@@ -19,6 +19,12 @@ export default defineType({
       default: false,
     },
     {
+      name: 'subscribe',
+      title: 'Subscribe',
+      icon: TbSettings,
+      default: false,
+    },
+    {
       name: 'footer',
       title: 'Footer',
       icon: TbSettings,
@@ -53,7 +59,7 @@ export default defineType({
     defineField({
       name: 'bio',
       title: 'Bio',
-      type: 'string',
+      type: 'blockContent',
       group: 'avatar',
     }),
     defineField({
@@ -73,6 +79,12 @@ export default defineType({
       title: 'Footer Description',
       type: 'blockContent',
       group: 'footer',
+    }),
+    defineField({
+      name: 'subscribeLink',
+      title: 'Subscribe Link',
+      type: 'url',
+      group: 'subscribe',
     }),
   ],
 })

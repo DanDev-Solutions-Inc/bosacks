@@ -9,6 +9,7 @@ import { BiographyPageProps } from "@interfaces/BiographyPageProps";
 import { getItemQuery } from "@utils/groq-helper";
 import { LinkedIn, Twitter } from "@components/icons";
 import { NextSeo } from "next-seo";
+import { PortableText } from "@portabletext/react";
 
 const Button = dynamic(() => import("@components/button"));
 
@@ -20,7 +21,6 @@ const Biography = ({ configuration }: BiographyPageProps) => {
         title={`Biography | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-
       <section className="h-screen flex justify-center items-center container">
         <div className="text-center">
           <Image
@@ -32,7 +32,7 @@ const Biography = ({ configuration }: BiographyPageProps) => {
             className="rounded-full mx-auto mb-8"
           />
           <p className="text-[16px] max-w-[600px] text-grey">
-            {configuration.bio}
+            <PortableText value={configuration.bio} />
           </p>
           <ul className="flex justify-center mt-4 space-x-4">
             <li>

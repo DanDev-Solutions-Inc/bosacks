@@ -1,18 +1,16 @@
-import React, { useMemo, useState, useContext } from "react";
+import React, { useMemo, useState } from "react";
 import { PortableText } from "@portabletext/react";
 
 import { components } from "./components";
 import { client } from "@client";
 import { getItemQuery } from "@utils/groq-helper";
 import { Global } from "@interfaces/sanity/Global";
-import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import Link from "next/link";
 
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
 
-  const { setIsOpen } = useContext(SubscribeModalContext);
   const [global, setGlobal] = useState<Global>();
 
   useMemo(() => {
@@ -37,7 +35,7 @@ const Footer = () => {
             )}
             <button
               className="mt-5 underline"
-              onClick={() => setIsOpen?.(true)}
+              onClick={() => window.open(global?.subscribeLink, "_blank")}
             >
               Subscribe for Free
             </button>

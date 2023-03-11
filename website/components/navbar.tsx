@@ -5,7 +5,6 @@ import { useContext, useMemo, useState } from "react";
 
 import HamburgerMenu from "./hamburger-menu";
 
-import { SubscribeModalContext } from "@context/subscribe-modal-context";
 import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { Twitter, LinkedIn, HamburgerMenuIcon } from "./icons";
 import { client } from "@client";
@@ -16,9 +15,6 @@ const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
-  const { isOpen: isModalOpen, setIsOpen: setIsModalOpen } = useContext(
-    SubscribeModalContext
-  );
   const [global, setGlobal] = useState<Global>();
 
   useMemo(() => {
@@ -78,11 +74,7 @@ const Navbar = () => {
               <li>
                 <SubscribeButton
                   text="Subscribe"
-                  onClick={() => {
-                    if (setIsModalOpen) {
-                      setIsModalOpen(!isModalOpen);
-                    }
-                  }}
+                  onClick={() => window.open(global?.subscribeLink, "_blank")}
                 />
               </li>
             </ul>

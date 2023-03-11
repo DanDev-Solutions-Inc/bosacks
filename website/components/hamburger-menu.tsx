@@ -10,15 +10,11 @@ import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { HamburgerMenuProps } from "@interfaces/HamburgerMenuProps";
 import useWindowSize from "../hooks/useWindowSize";
 import { useRouter } from "next/router";
-import { SubscribeModalContext } from "@context/subscribe-modal-context";
 
 const Button = dynamic(() => import("@components/button"));
 
 const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
   const { isOpen, toggle } = useContext(HamburgerMenuContext);
-  const { isOpen: isModalOpen, setIsOpen: setIsModalOpen } = useContext(
-    SubscribeModalContext
-  );
   const { windowSize } = useWindowSize();
   const router = useRouter();
 
@@ -86,9 +82,7 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
               <Button
                 text="Subscribe"
                 onClick={() => {
-                  if (setIsModalOpen) {
-                    setIsModalOpen(!isModalOpen);
-                  }
+                  window.open(global.subscribeLink, "_blank");
                 }}
               />
             </li>
