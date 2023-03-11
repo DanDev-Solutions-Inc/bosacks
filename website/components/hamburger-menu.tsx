@@ -64,6 +64,14 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
           <ul className="flex flex-col space-y-6 items-center text-[30px]">
             <li>
               <div
+                onClick={() => onNavigate("/")}
+                className="hover:text-primary font-normal no-underline"
+              >
+                Home
+              </div>
+            </li>
+            <li>
+              <div
                 onClick={() => onNavigate("/#articles")}
                 className="hover:text-primary font-normal no-underline"
               >
