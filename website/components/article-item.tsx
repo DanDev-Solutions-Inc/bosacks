@@ -11,17 +11,27 @@ import { Arrow } from "./icons";
 const CategoryPill = dynamic(() => import("@components/category-pill"));
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
+  const getImageURL = (image: any) => {
+    try {
+      const url = urlFor(image).url();
+      return url;
+    } catch (e) {
+      console.error((e as Error).message);
+    }
+    return "";
+  };
+
   return (
     <article className="group">
-      <div>
-        {article.image ? (
+      <div className="max-w-[85vw]">
+        {article.image && getImageURL(article.image) ? (
           <Link
             href={`/${article.categorySlug.current}/${article.slug.current}`}
           >
             <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
               <CategoryPill category={article.category} />
               <Image
-                src={urlFor(article.image).url()}
+                src={getImageURL(article.image)}
                 alt={article.title}
                 fill
                 sizes="100%"
