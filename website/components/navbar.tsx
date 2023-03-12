@@ -41,7 +41,7 @@ const Navbar = () => {
             />
           </Link>
           <nav className="hidden sm:block">
-            <ul className="flex space-x-4 items-center text-[14px] md:text-[16px]">
+            <ul className="flex space-x-4 items-center text-[12px] md:text-[14px]">
               <li>
                 <Link
                   href="/#articles"
@@ -56,6 +56,22 @@ const Navbar = () => {
                   className="hover:text-primary font-normal no-underline"
                 >
                   Biography
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/advertise"
+                  className="hover:text-primary font-normal no-underline"
+                >
+                  Advertise
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/publishing-links"
+                  className="hover:text-primary font-normal no-underline"
+                >
+                  Links
                 </Link>
               </li>
               <li className="cursor-pointer">

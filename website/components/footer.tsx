@@ -64,7 +64,7 @@ const Footer = () => {
                 href="/publishing-links"
                 className="text-[12px] hover:underline"
               >
-                Publishing Links
+                Links
               </Link>
             </li>
             <li>

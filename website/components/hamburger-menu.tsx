@@ -79,6 +79,22 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
               </div>
             </li>
             <li>
+              <div
+                onClick={() => onNavigate("/advertise")}
+                className="hover:text-primary font-normal no-underline"
+              >
+                Advertise
+              </div>
+            </li>
+            <li>
+              <div
+                onClick={() => onNavigate("/publishing-links")}
+                className="hover:text-primary font-normal no-underline"
+              >
+                Links
+              </div>
+            </li>
+            <li>
               <Button
                 text="Subscribe"
                 onClick={() => {
