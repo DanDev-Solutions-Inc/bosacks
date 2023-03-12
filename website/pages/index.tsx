@@ -127,7 +127,7 @@ const Home: NextPage<HomePageProps> = ({
   return (
     <>
       <NextSeo
-        title={`Biography | BoSacks`}
+        title={`Home | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
       <FeaturedArticle article={articles[0]} />
