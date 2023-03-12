@@ -21,10 +21,24 @@ export const components = {
   },
   types: {
     image: ({ value }: any) => {
-      const { width, height } = getImageDimensions(value);
+      let width = 250;
+      let height = 250;
+      let url = "";
+
+      try {
+        const imageDimensions = getImageDimensions(value);
+        width = imageDimensions.width;
+        height = imageDimensions.height;
+        url = urlFor(value).width(800).fit("max").auto("format").url();
+      } catch (e) {
+        console.error((e as Error).message);
+      }
+
       return (
         <Image
-          src={urlFor(value).width(800).fit("max").auto("format").url()}
+          src={url}
+          width={width}
+          height={height}
           alt={value.alt || " "}
           loading="lazy"
           style={{

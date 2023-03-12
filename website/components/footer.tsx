@@ -55,6 +55,19 @@ const Footer = () => {
               </Link>
             </li>
             <li>
+              <Link href="/advertise" className="text-[12px] hover:underline">
+                Advertise
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/publishing-links"
+                className="text-[12px] hover:underline"
+              >
+                Publishing Links
+              </Link>
+            </li>
+            <li>
               <Link
                 href="mailto:bo@bosacks.com"
                 target="_blank"

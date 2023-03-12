@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useContext, useMemo, useState } from "react";
-
-import HamburgerMenu from "./hamburger-menu";
+import { useContext, useEffect, useState } from "react";
 
 import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { Twitter, LinkedIn, HamburgerMenuIcon } from "./icons";
@@ -12,12 +10,13 @@ import { getItemQuery } from "@utils/groq-helper";
 import { Global } from "@interfaces/sanity/Global";
 
 const SubscribeButton = dynamic(() => import("@components/subscribe-button"));
+const HamburgerMenu = dynamic(() => import("./hamburger-menu"));
 
 const Navbar = () => {
   const { setIsOpen, toggle } = useContext(HamburgerMenuContext);
   const [global, setGlobal] = useState<Global>();
 
-  useMemo(() => {
+  useEffect(() => {
     const init = async () => {
       const global: Global = await client.fetch(getItemQuery("global"));
       setGlobal(global);
@@ -43,14 +42,6 @@ const Navbar = () => {
           </Link>
           <nav className="hidden sm:block">
             <ul className="flex space-x-4 items-center text-[14px] md:text-[16px]">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-primary font-normal no-underline"
-                >
-                  Home
-                </Link>
-              </li>
               <li>
                 <Link
                   href="/#articles"
@@ -89,25 +80,14 @@ const Navbar = () => {
               </li>
             </ul>
           </nav>
-          <button
-            className="block sm:hidden"
-            onClick={() => {
-              if (toggle) {
-                toggle();
-              }
-            }}
-          >
+          <button className="block sm:hidden" onClick={() => toggle?.()}>
             <HamburgerMenuIcon />
           </button>
         </div>
       </header>
       <HamburgerMenu
         global={global as Global}
-        onClose={() => {
-          if (setIsOpen) {
-            setIsOpen(false);
-          }
-        }}
+        onClose={() => setIsOpen?.(false)}
       />
     </>
   );

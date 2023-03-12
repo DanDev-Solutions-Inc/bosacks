@@ -35,6 +35,7 @@ const Home: NextPage<HomePageProps> = ({
   const [search, setSearch] = useState<string>("");
 
   useMemo(() => {
+    if (!filteredArticles && !itemsPerPage) return;
     setDataLength(
       filteredArticles.length < itemsPerPage
         ? itemsPerPage

@@ -12,6 +12,8 @@ export interface Global {
   linkedIn: string;
   avatarImage: Image;
   bio: Block[];
+  publishingLinksDescription: Block[];
+  advertiseDescription: Block[];
   footerDescription: Block[];
   subscribeLink: string;
 }

@@ -25,8 +25,8 @@ export default defineType({
       default: false,
     },
     {
-      name: 'footer',
-      title: 'Footer',
+      name: 'pages',
+      title: 'Pages',
       icon: TbSettings,
       default: false,
     },
@@ -75,10 +75,22 @@ export default defineType({
       group: 'socials',
     }),
     defineField({
+      name: 'advertiseDescription',
+      title: 'Advertise Description',
+      type: 'blockContent',
+      group: 'pages',
+    }),
+    defineField({
+      name: 'publishingLinksDescription',
+      title: 'Publishing Links Description',
+      type: 'blockContent',
+      group: 'pages',
+    }),
+    defineField({
       name: 'footerDescription',
       title: 'Footer Description',
       type: 'blockContent',
-      group: 'footer',
+      group: 'pages',
     }),
     defineField({
       name: 'subscribeLink',
