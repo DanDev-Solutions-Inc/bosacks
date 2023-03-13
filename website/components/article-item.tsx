@@ -22,42 +22,37 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   };
 
   return (
-    <article className="group">
-      <div className="max-w-[85vw]">
-        {article.image && getImageURL(article.image) ? (
-          <Link
-            href={`/${article.categorySlug.current}/${article.slug.current}`}
-          >
-            <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
-              <CategoryPill category={article.category} />
-              <Image
-                src={getImageURL(article.image)}
-                alt={article.title}
-                fill
-                sizes="100%"
-                priority
-                className="object-cover"
-              />
-            </div>
-          </Link>
-        ) : (
-          <Link
-            href={`/${article.categorySlug.current}/${article.slug.current}`}
-          >
-            <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
-              <CategoryPill category={article.category} />
-              <Image
-                src="/assets/article-image-placeholder.jpeg"
-                alt={article.title}
-                sizes="100%"
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-          </Link>
-        )}
-      </div>
+    <div className="group">
+      {article.image && getImageURL(article.image) ? (
+        <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
+          <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
+            <CategoryPill category={article.category} />
+            <Image
+              src={getImageURL(article.image)}
+              alt={article.title}
+              fill
+              sizes="100%"
+              priority
+              className="object-cover"
+            />
+          </div>
+        </Link>
+      ) : (
+        <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
+          <div className="relative mb-4 w-full h-[250px] md:h-[350px]">
+            <CategoryPill category={article.category} />
+            <Image
+              src="/assets/article-image-placeholder.jpeg"
+              alt={article.title}
+              sizes="100%"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        </Link>
+      )}
+
       <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
         <div className="flex flex-col space-y-3">
           <h2 className="font-bold text-[22px] leading-[100%] group-hover:text-primary transition-all">
@@ -74,7 +69,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           </div>
         </div>
       </Link>
-    </article>
+    </div>
   );
 };
 
