@@ -22,7 +22,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   };
 
   return (
-    <div className="group">
+    <div className="group mb-6 md:mb-0">
       {article.image && getImageURL(article.image) ? (
         <Link href={`/${article.categorySlug.current}/${article.slug.current}`}>
           <div className="relative mb-4 w-full h-[250px] md:h-[350px]">

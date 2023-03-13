@@ -148,14 +148,12 @@ const Articles: NextPage<ArticlesPageProps> = ({
         scrollThreshold={0.25}
         loader={<ScrollMessage type="loading" message="Loading..." />}
         endMessage={<ScrollMessage type="end" message="You've seen it all!" />}
-        className="container mt-10"
+        className="container mt-10 md:grid md:grid-cols-2 md:gap-6"
       >
-        <div className="grid md:grid-cols-2 gap-6">
-          {getFilteredArticles() &&
-            getFilteredArticles().map((article, index) => {
-              return <ArticleItem key={index} article={article} />;
-            })}
-        </div>
+        {getFilteredArticles() &&
+          getFilteredArticles().map((article, index) => {
+            return <ArticleItem key={index} article={article} />;
+          })}
       </InfiniteScroll>
     </>
   );

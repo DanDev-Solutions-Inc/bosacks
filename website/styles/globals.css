@@ -51,6 +51,10 @@ select {
   min-height: 600px;
 }
 
+.infinite-scroll-component {
+  overflow: hidden !important;
+}
+
 div.article.text-grey a {
   color: #5c0e06;
   font-weight: 500;
