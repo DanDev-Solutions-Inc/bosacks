@@ -40,9 +40,9 @@ const Biography = ({ configuration }: BiographyPageProps) => {
             priority
             className="rounded-full mx-auto mb-8"
           />
-          <p className="text-[16px] text-[#333]">
+          <div className="text-[16px] text-[#333]">
             <PortableText value={configuration.bio} components={components} />
-          </p>
+          </div>
           <ul className="flex justify-center mt-10 space-x-4">
             <li>
               <a href={configuration.twitter}>
@@ -58,7 +58,7 @@ const Biography = ({ configuration }: BiographyPageProps) => {
           <div className="max-w-[150px] mx-auto mt-8">
             <Button
               text="Browse Articles"
-              onClick={() => router.push("/#articles")}
+              onClick={() => router.push("/articles")}
             />
           </div>
         </div>

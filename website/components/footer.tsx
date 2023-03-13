@@ -45,7 +45,7 @@ const Footer = () => {
           <h3 className="font-bold mb-3">BoSacks Speaks Out</h3>
           <ul>
             <li>
-              <Link href="/#articles" className="text-[12px] hover:underline">
+              <Link href="/articles" className="text-[12px] hover:underline">
                 Browse Articles
               </Link>
             </li>

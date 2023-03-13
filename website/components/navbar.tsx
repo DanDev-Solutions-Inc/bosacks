@@ -44,7 +44,7 @@ const Navbar = () => {
             <ul className="flex space-x-4 items-center text-[12px] md:text-[14px]">
               <li>
                 <Link
-                  href="/#articles"
+                  href="/articles"
                   className="hover:text-primary font-normal no-underline"
                 >
                   Articles

@@ -14,7 +14,7 @@ const Advertise = ({ configuration }: AdvertisePageProps) => {
         title={`Advertise | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
-      <section className="container mt-40 advertise min-h-[80vh]">
+      <section className="container mt-20 advertise min-h-[80vh]">
         <div>
           <PortableText
             value={configuration.advertiseDescription}
