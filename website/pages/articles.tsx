@@ -126,7 +126,7 @@ const Articles: NextPage<ArticlesPageProps> = ({
   return (
     <>
       <NextSeo
-        title={`Archive | BoSacks`}
+        title={`Articles | BoSacks`}
         description="A veteran of the printing/publishing industry, BoSacks has always been an innovator who regularly electrifies the media."
       />
       <FeaturedArticle article={articles[0]} />
