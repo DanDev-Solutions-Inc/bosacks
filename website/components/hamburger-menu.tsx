@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { slide as Menu } from "react-burger-menu";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,8 +9,10 @@ import { HamburgerMenuContext } from "../context/hamburger-menu-context";
 import { HamburgerMenuProps } from "@interfaces/HamburgerMenuProps";
 import useWindowSize from "../hooks/useWindowSize";
 import { useRouter } from "next/router";
+import { slide as SlideMenu } from "react-burger-menu";
 
 const Button = dynamic(() => import("@components/button"));
+const Menu = SlideMenu as unknown as React.ComponentType<any>;
 
 const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
   const { isOpen, toggle } = useContext(HamburgerMenuContext);
