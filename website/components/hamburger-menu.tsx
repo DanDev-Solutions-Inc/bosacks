@@ -23,7 +23,7 @@ const HamburgerMenu = ({ onClose, global }: HamburgerMenuProps) => {
     if (windowSize.width >= 640) {
       onClose();
     }
-  }, [windowSize.width]);
+  }, [windowSize.width, onClose]);
 
   const onNavigate = (url: string) => {
     toggle?.();

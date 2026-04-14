@@ -53,7 +53,7 @@ const Articles: NextPage<ArticlesPageProps> = ({
       setHasMore(articles.length !== totalArticles);
     };
     init();
-  }, [listingOrder]);
+  }, [listingOrder, totalArticles]);
 
   useMemo(() => {
     const init = async () => {
@@ -72,7 +72,7 @@ const Articles: NextPage<ArticlesPageProps> = ({
       setHasMore(articles.length !== filteredCount);
     };
     init();
-  }, [categoryFilter]);
+  }, [categoryFilter, listingOrder, search]);
 
   const getFilteredArticles = () => {
     return filteredArticles;
